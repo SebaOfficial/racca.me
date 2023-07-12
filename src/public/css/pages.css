@@ -1,0 +1,120 @@
+@import './main.css';
+/* HOME */
+#home p{
+    margin: 15px 0 35px 0;
+}
+
+/* CONTACTS */
+#contacts{
+    border: 1px solid var(--color6);
+    padding: 3em 2em 3em 2em;
+}
+
+#contacts h2{
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: var(--color7);
+}
+#contacts #svgs {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2.2em;
+}
+
+#contacts #svgs a{
+    background-color: transparent;
+}
+
+#contacts #svgs a img {
+    border-radius: 50%;
+    box-shadow: 0 0 0 transparent;
+    width: 60px;
+    height: 60px;
+}
+
+#contacts #svgs a img:hover {
+    box-shadow: 0 0 15px var(--color7);
+}
+
+#contacts .feedback-input{
+    color: var(--color7);
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 5px;
+    line-height: 22px;
+    background-color: transparent;
+    border: 2px solid #469;
+    transition: all 0.3s;
+    padding: 13px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+#contacts .feedback-input:focus{
+    border: 2px solid var(--color7);
+}
+
+#contactstextarea {
+    height: 150px;
+    line-height: 150%;
+    resize: vertical;
+}
+
+#contacts [type="submit"] {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    width: 100%;
+    background: #469;
+    border-radius :5px;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: all 0.3s;
+    margin-top: -4px;
+    font-weight: 700;
+}
+
+#contacts [type="submit"]:hover {
+    background: rgb(65, 130, 228);
+}
+
+/* PROJECTS */
+#projects h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#projects .repository {
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.177);
+    margin: 1em;
+    border-radius: 15px;
+}
+
+#projects .star {
+    color: orange;
+}
+
+
+/* NOT FOUND */
+#notFound-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#notFound div p{
+    margin-left: 20px;
+}
+
+#notFound img{
+    max-width: 100px;
+    max-height: 100px;
+}

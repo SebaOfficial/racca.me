@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="{{USER_LANGUAGE}}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{DOC_DESCRIPTION}}">
+    <meta property="og:description" content="{{DOC_DESCRIPTION}}">
+    <meta property="og:site_name" content="{{DOC_TITLE}}">
+    <meta property="og:title" content="{{DOC_TITLE}}">
+    <meta property="og:url" content="https://racca.me/">
+    <meta property="og:type" content="website">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="800">
+    <meta property="og:image" content="https://racca.me/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://racca.me/{{USER_LANGUAGE}}/">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="favicon.ico">
+    <title>{{DOC_TITLE}}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/css/pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script>
+
+        const languages = '{{AVAILABLE_LANGUAGES}}';
+        let uri = window.location.pathname;
+        const userLanguage = (navigator.language || navigator.userLanguage).substr;
+
+        if(!languages.includes(uri.split('/')[1])){ // The language is not set
+            let newUri = `/{{DEFAULT_USER_LANGUAGE}}${uri}`;
+
+            if(userLanguage === '{{DEFAULT_USER_LANGUAGE}}')
+                history.replaceState({}, document.title, newUri);
+
+            else
+                window.location.href = newUri;
+
+        }
+
+    </script>
+
+</head>
+<body>
+    <header>
+        <h1 id="section-title">{{SECTION_TITLE}}</h1>
+        <nav>
+            <ul>
+                <li><a class="active" title="Home Page" href="/{{USER_LANGUAGE}}/" onclick="goToPage(event, '/{{USER_LANGUAGE}}/')">{{NAVIGATOR.HOME}}</a></li>
+                <li><a class="active" title="Contact Page" href="contacts" onclick="goToPage(event, 'contacts')">{{NAVIGATOR.CONTACTS}}</a></li>
+                <li><a class="active" title="Project Page" href="projects" onclick="goToPage(event, 'projects')">{{NAVIGATOR.PROJECTS}}</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {{PAGE_CONTENTS}}
+    </main>
+
+
+    <script>
+        updateNavBar();
+
+        function goToPage(event, page){
+            const link = document.querySelector(`a[href="${page}"]`);
+            event.preventDefault();
+            
+            if(link.classList.contains("active")){
+                fetch(page + "/?api")
+                    .then(response => response.json())
+                    .then(data => {
+                        updatePage(page, data.title, data.mainContent, data.sectionTitle);
+                        updateNavBar();
+                    })
+                    .catch(error => {
+                        console.error("Error fetching HTML:", error);
+                        window.location.href = page;
+                    });
+            }
+        }
+
+        function updateNavBar() {
+            const page = window.location.pathname.split('/')[2];
+            const links = document.querySelectorAll('nav a');
+
+            links.forEach(function(link) {
+                
+                if (link.getAttribute('href') !== page) {
+                    
+                    if(page === ""){
+
+                        if(link.getAttribute('href') === "/{{USER_LANGUAGE}}/"){
+                            link.classList.remove('active');
+                        } else{
+                            link.classList.add('active');
+                        }
+
+                    } else{
+                        link.classList.add('active');
+                    }
+
+                } else {
+                    link.classList.remove('active');
+                }
+                
+            });
+        }
+
+        function updatePage(pageUrl, pageTitle, mainContent, sectionTitle){
+            document.querySelector("main").innerHTML = mainContent;
+            document.getElementById('section-title').innerHTML = sectionTitle;
+            history.replaceState({}, document.title, pageUrl);
+            document.title = pageTitle;
+        }
+
+    </script>
+</body>
+</html>

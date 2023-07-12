@@ -1,0 +1,9 @@
+{
+    "pages": {
+        "path": "@/src/pages/"
+    },
+    "languages": {
+        "path": "@/src/locales/",
+        "default": "en"
+    }
+}

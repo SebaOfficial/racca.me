@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: 
+
+Sitemap: https://racca.me/sitemap-en.xml
+Sitemap: https://racca.me/sitemap-it.xml

@@ -1,0 +1,25 @@
+{
+    "name": "seba/racca.me",
+    "description": "Just my personal website",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Seba\\Components\\": "src/components/",
+            "Seba\\Components\\HTTP\\": "src/components/HTTP/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sebastiano",
+            "email": "sebastiano@racca.me"
+        }
+    ],
+    "require": {
+        "symfony/cache": "^6.3",
+        "guzzlehttp/guzzle": "^7.7"
+    },
+    "scripts": {
+        "bootstrap": "git pull origin main && composer update && composer dump-autoload"
+    }
+}

@@ -1,0 +1,74 @@
+{
+    "pages": {
+        "index": {
+            "title": "Sebastiano Racca - Sviluppatore",
+            "description": "Il Sito personale di Sebastiano Racca",
+            "navigator": "Home",
+            "h1": "Seba",
+            "content": [
+                {
+                    "title": "Sede in Italia",
+                    "content": "Sono uno studente italiano che persegue la sua istruzione alla continua ricerca di conoscenza e sviluppo personale."
+                },
+                {
+                    "title": "Sviluppatore PHP",
+                    "content": "Mi ritengo un esperto sviluppatore PHP, specializzandomi nello sviluppo di apllicazioni web. Inoltre ho competenze nello sviluppo di bot Telegram."
+                },
+                {
+                    "title": "Scout Entusiasta",
+                    "content": "Essere scout è una parte integrante della mia vita. Ha plasmato il mio carattere, mi ha insegnato preziose competenze per la vita e mi ha permesso di contribuire alla mia comunità attraverso il lavoro di squadra, la leadership e le attività all'aria aperta."
+                },
+                {
+                    "title": "Sostenitore dei Diritti Umani",
+                    "content": "Sono profondamente interessato alle questioni sociali, in particolare a quelle legate all'ecologia, alla diversità etnica e alle minoranze politiche. Sostengo attivamente le iniziative che mirano a creare un mondo più inclusivo e sostenibile."
+                }
+            ]
+        },
+        "contacts": {
+            "title": "Contattami",
+            "description": "Mettiti in contatto con Sebastiano Racca e connettiti direttamente per richieste, collaborazioni o qualsiasi domanda tu possa avere. Contattami per discutere di progetti, partnership o opportunità.",
+            "navigator": "Contatti",
+            "h1": "Contatti",
+            "content": {
+                "title": "Contattami",
+                "form": {
+                    "subject": {
+                        "label": "Oggetto",
+                        "placeholder": "L'Oggetto"
+                    },
+                    "name": {
+                        "label": "Nome",
+                        "placeholder": "Il tuo Nome"
+                    },
+                    "message": {
+                        "label": "Messaggio",
+                        "placeholder": "Il messaggio che vuoi inviarmi"
+                    },
+                    "submit": "Invia"
+                }
+            }
+        },
+        "projects": {
+            "title": "Progetti Open Source",
+            "description": "Esplora i progetti open source di Sebastiano Racca da GitHub, dalle librerie ai progetti completi.",
+            "navigator": "Progetti",
+            "h1": "Progetti",
+            "content": {
+                "title": "Progetti Open Source da Github",
+                "star": {
+                    "singular": "Stella",
+                    "plural": "Stelle"
+                }
+            }
+        },
+        "404":{
+            "title": "Not Found",
+            "description": "Oops, pagina non trovata, torna su racca.me",
+            "h1": "Not Found",
+            "content": {
+                "title": "La pagina non esiste",
+                "description": "Ma non ti preoccupare"
+            }
+        }
+    }
+}
