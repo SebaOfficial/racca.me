@@ -80,6 +80,9 @@ final class Website{
             [
                 "{{DOC_TITLE}}" => $this->translator->pages->{$this->page}->title,
                 "{{DOC_DESCRIPTION}}" => $this->translator->pages->{$this->page}->description,
+                "{{CURRENT_PAGE}}" => $this->uri,
+                "{{CURRENT_SHORT_PAGE}}" => $this->page,
+                "{{DOC_PREVIEW}}" => $this->translator->pages->{$this->page}->preview,
                 "{{SECTION_TITLE}}" => $this->translator->pages->{$this->page}->h1,
                 "{{NAVIGATOR.HOME}}" => $this->translator->pages->{"index"}->navigator,
                 "{{NAVIGATOR.CONTACTS}}" => $this->translator->pages->{"contacts"}->navigator,
@@ -159,11 +162,12 @@ final class Website{
         foreach ($repos as $repo) {
             $str .= "
                 <div itemscope itemtype='http://schema.org/SoftwareSourceCode' class='repository'>
-                    <h3><a itemprop='codeRepository' class='active' href='https://github.com/" . $repo->full_name . "' target='_blank'>" . $repo->full_name . "</a></h3>
-                    <p itemprop='description'>" . $repo->description . "</p>
-                    <p itemprop='aggregateRating' itemscope itemtype='http://schema.org/AggregateRating' class='star'>
-                        <span class='fa fa-star'></span> <span itemprop='ratingValue'>" . $repo->stargazers_count . "</span> " . ($repo->stargazers_count == 1 ? $this->translator->pages->{"projects"}->content->star->singular : $this->translator->pages->{"projects"}->content->star->plural) ."
-                    </p>
+                    <h3><a itemprop='codeRepository' class='active' href='https://github.com/$repo->full_name' target='_blank'>$repo->full_name </a></h3>
+                    <p itemprop='description'>$repo->description</p>
+                    <span class='star'>
+                        <span class='fa fa-star'></span>
+                        $repo->stargazers_count " . ($repo->stargazers_count == 1 ? $this->translator->pages->{"projects"}->content->star->singular : $this->translator->pages->{"projects"}->content->star->plural) ."
+                    </span>
                 </div>";
         }
 
