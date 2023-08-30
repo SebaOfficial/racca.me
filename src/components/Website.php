@@ -154,11 +154,16 @@ final class Website{
     private function getProjects(): string{
         $client = new Client();
         $str = "";
-
+    
         $response = $client->get('https://api.github.com/users/SebaOfficial/repos?type=public');
-
+    
         $repos = json_decode((string) $response->getBody());
-
+    
+        // Sort the repositories by stargazers_count in descending order
+        usort($repos, function($a, $b) {
+            return $b->stargazers_count - $a->stargazers_count;
+        });
+    
         foreach ($repos as $repo) {
             $str .= "
                 <div itemscope itemtype='http://schema.org/SoftwareSourceCode' class='repository'>
@@ -170,9 +175,9 @@ final class Website{
                     </span>
                 </div>";
         }
-
+    
         return $str;
-    }
+    }    
 
     /**
      * Replaces placeholders in a given text.

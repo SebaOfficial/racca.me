@@ -102,6 +102,11 @@
     color: orange;
 }
 
+#projects > div {
+  height: 35em;
+  overflow: auto;
+}
+
 
 /* NOT FOUND */
 #notFound-header{
