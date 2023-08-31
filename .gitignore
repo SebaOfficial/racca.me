@@ -1,2 +1,7 @@
 vendor/
 composer.lock
+
+.env
+
+src/previews/*
+!src/previews/.gitkeep

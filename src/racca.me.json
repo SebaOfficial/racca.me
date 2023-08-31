@@ -5,5 +5,12 @@
     "languages": {
         "path": "@/src/locales/",
         "default": "en"
+    },
+    "payments": {
+        "urls": {
+            "paypal": "https://paypal.me/SebastianoRacca/",
+            "satispay": "https://www.satispay.com/app/match/link/user/S6Y-CON--15B98E67-8210-4055-9BC5-938C589824B1",
+            "bmc": "https://www.buymeacoffee.com/SebaDev/"
+        }
     }
 }

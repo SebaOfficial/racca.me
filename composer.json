@@ -16,8 +16,13 @@
         }
     ],
     "require": {
+        "php": ">=8",
         "symfony/cache": "^6.3",
-        "guzzlehttp/guzzle": "^7.7"
+        "guzzlehttp/guzzle": "^7.7",
+        "stripe/stripe-php": "^12.0",
+        "seba/http": "^1.0",
+        "mikehaertl/phpwkhtmltopdf": "^2.5",
+        "vlucas/phpdotenv": "^5.5"
     },
     "scripts": {
         "bootstrap": "git pull origin main && composer update && composer dump-autoload"

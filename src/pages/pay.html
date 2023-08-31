@@ -1,0 +1,133 @@
+<div class="form">
+    <div>
+        <h2>Payment Details</h2>
+        <p>Any Donation is apreciated <3</p>
+    </div>
+    
+    <form onsubmit="event.preventDefault(); submitPayForm();">
+        <div class="payment-options">
+            <label for="payment-method"><h3>Payment Method:</h3></label>
+            <div class="form-options">
+                <div class="option">
+                    <input type="radio" id="credit-card" name="payment-method" value="credit-card">
+                    <label for="credit-card">
+                        <img id="selected-payment" title="Card Payment" src="/assets/svgs/card.svg" alt="Credit Card Icon" onclick="changePaymentMethod(this)">
+                    </label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="paypal" name="payment-method" value="paypal">
+                    <label for="paypal">
+                        <img title="Paypal Payment" src="/assets/svgs/paypal.svg" alt="PayPal Icon" onclick="changePaymentMethod(this)">
+                    </label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="satispay" name="payment-method" value="satispay">
+                    <label for="satispay">
+                        <img title="Satispay Payment" src="/assets/svgs/satispay.svg" alt="Satispay Icon" onclick="changePaymentMethod(this)">
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        
+        <div>
+            <label for="amount"><h3>Amount to Pay:</h3></label>
+            <p>€ <span oninput="validateAmount()" contenteditable id="amount">10.00</span></p>
+        </div>
+
+        <br>
+
+
+        <div>
+            <button type="submit" id="pay-button">Donate/Pay</button>
+        </div>
+
+    </form>
+</div>
+
+<style>
+    #amount{
+        font-size: 2em;
+    }
+
+    #selected-payment{
+        border: 4px solid var(--color7);
+        height: 125px;
+        width: 125px;
+    }
+
+    .form .form-options img {
+        width: 90px;
+        height: 90px;
+        padding: 10px;
+        transition: width 1s, height 1s;
+    }
+</style>
+
+<script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="SebaDev" data-description="Support me on Buy me a coffee!" data-message="So tired, why don't you buy me a coffee?" data-color="#5F7FFF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
+<script>
+    const amount = document.getElementById("amount");
+
+    function validateAmount() {
+        const content = document.getElementById("amount").textContent.trim();
+        const regex = /^\d+\.\d{2}$/;
+
+        if (regex.test(content)) {
+            amount.style.backgroundColor = "";
+            return true;
+        } else {
+            amount.style.backgroundColor = "red";
+            return false;
+        }
+    }
+
+    function changePaymentMethod(newPaymentMethod){
+        let element = document.getElementById("selected-payment");
+        element.id = "";
+        newPaymentMethod.id = "selected-payment";
+    }
+
+    function extractPaymentMethod(link) {
+        const regex = /\/assets\/svgs\/(satispay|paypal|card|bmc)\.svg/;
+        const match = link.match(regex);
+        
+        if (match) {
+            return match[1];
+        } else {
+            return null;
+        }
+    }
+
+    async function submitPayForm() {
+        let selectedPayment = document.getElementById("selected-payment");
+
+        if (validateAmount() && selectedPayment) {
+            let method = extractPaymentMethod(selectedPayment.src);
+
+            try {
+                const response = await fetch("/pay.php", {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        method: method,
+                        amount: amount.innerHTML * 100
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                let body = await response.json();
+                window.open(body.url, '_blank');
+
+            } catch (error) {
+                console.error('An error occurred:', error);
+                return null;
+            }
+        }
+    }
+</script>

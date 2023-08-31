@@ -62,6 +62,39 @@ final class Website{
     }
 
     /**
+     * Returns an array of absolute paths of all the pages.
+     * 
+     * @return array   The actual pages.
+     */
+    private function getAllPages(): array{
+        return glob($this->settings->pages->path . "*.html");
+    }
+
+    /**
+     * Returns an array of all the navigators for the translator.
+     * 
+     * @return array   Associative array for the translator.
+     */
+    private function getNavigators(): array{
+
+        $pages = array_map(function($element) {
+            return strtr($element, [
+                ".html" => "",
+                $this->settings->pages->path => ""
+            ]);
+        }, $this->getAllPages());
+        
+        $navigators = [];
+        
+        foreach ($pages as $page) {
+            $navigators["{{NAVIGATOR." . strtoupper($page) . "}}"] = $this->translator->pages->{$page}->navigator ?? "";
+        }
+
+        return $navigators;
+        
+    }
+
+    /**
      * Initializes the translator.
      * 
      * @return void
@@ -84,10 +117,8 @@ final class Website{
                 "{{CURRENT_SHORT_PAGE}}" => $this->page,
                 "{{DOC_PREVIEW}}" => $this->translator->pages->{$this->page}->preview,
                 "{{SECTION_TITLE}}" => $this->translator->pages->{$this->page}->h1,
-                "{{NAVIGATOR.HOME}}" => $this->translator->pages->{"index"}->navigator,
-                "{{NAVIGATOR.CONTACTS}}" => $this->translator->pages->{"contacts"}->navigator,
-                "{{NAVIGATOR.PROJECTS}}" => $this->translator->pages->{"projects"}->navigator,
             ],
+            $this->getNavigators(),
             match($this->page){
                 "index" => [
                     "{{BIO}}" => $this->getBio(),
@@ -217,5 +248,48 @@ final class Website{
                 "Content-Type" => $isApi ? "application/json" : "text/html"
             ])
             ->send();
+    }
+
+    /**
+     * Returns the url for the payment.
+     * 
+     * @param string $method   The payment method.
+     * @param int $amount      The amount to pay.
+     * 
+     * @return string          The actual url.
+     */
+    public function getPaymentUrl(string $method, int $amount): string{
+        $url = $this->settings->payments->urls;
+
+        if($method === "card"){
+            $stripe = new \Stripe\StripeClient($_ENV['STRIPE_SECRET_KEY']);
+            $session = $stripe->checkout->sessions->create([
+                'success_url' => "https://" . $_SERVER['SERVER_NAME'],
+                'line_items' => [
+                    [
+                      'price_data' => [
+                        'currency' => 'eur',
+                        'product_data' => [
+                          'name' => 'Checkout Session',
+                        ],
+                        'unit_amount' => $amount,
+                      ],
+                      'quantity' => 1,
+                    ],
+                  ],
+                'mode' => 'payment',
+            ]);
+
+            return $session->url;
+    
+        }
+
+        else if($method === "paypal"){
+            return $url->paypal . $amount/100 . "EUR";
+        }
+
+        else if($method === "satispay"){
+            return $url->satispay . "?amount=$amount";
+        }
     }
 }

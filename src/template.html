@@ -7,7 +7,7 @@
 
     <meta itemprop="name" content="{{DOC_TITLE}}">
     <meta itemprop="description" content="{{DOC_DESCRIPTION}}">
-    <meta itemprop="image" content="https://racca.me/assets/previews/{{CURRENT_SHORT_PAGE}}-{{USER_LANGUAGE}}.png">
+    <meta itemprop="image" content="https://racca.me/preview{{CURRENT_PAGE}}">
     
     <meta name="description" content="{{DOC_DESCRIPTION}}">
     <meta property="og:description" content="{{DOC_DESCRIPTION}}">
@@ -21,12 +21,12 @@
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="800">
-    <meta property="og:image" content="https://racca.me/assets/previews/{{CURRENT_SHORT_PAGE}}-{{USER_LANGUAGE}}.png">
+    <meta property="og:image" content="https://racca.me/preview{{CURRENT_PAGE}}">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{DOC_TITLE}}">
     <meta name="twitter:description" content="{{DOC_DESCRIPTION}}">
-    <meta name="twitter:image" content="https://racca.me/assets/previews/{{CURRENT_SHORT_PAGE}}-{{USER_LANGUAGE}}.png">
+    <meta name="twitter:image" content="https://racca.me/preview{{CURRENT_PAGE}}">
     
     <link rel="canonical" href="https://racca.me/{{CURRENT_PAGE}}">
 
@@ -67,9 +67,10 @@
         <h1 id="section-title">{{SECTION_TITLE}}</h1>
         <nav>
             <ul>
-                <li><a class="active" title="Home Page" href="/{{USER_LANGUAGE}}/" onclick="goToPage(event, '/{{USER_LANGUAGE}}/')">{{NAVIGATOR.HOME}}</a></li>
+                <li><a class="active" title="Home Page" href="/{{USER_LANGUAGE}}/" onclick="goToPage(event, '/{{USER_LANGUAGE}}/')">{{NAVIGATOR.INDEX}}</a></li>
                 <li><a class="active" title="Contact Page" href="contacts" onclick="goToPage(event, 'contacts')">{{NAVIGATOR.CONTACTS}}</a></li>
                 <li><a class="active" title="Project Page" href="projects" onclick="goToPage(event, 'projects')">{{NAVIGATOR.PROJECTS}}</a></li>
+                <li><a class="active" title="Donate & Pay Page" href="pay" onclick="goToPage(event, 'pay')">{{NAVIGATOR.PAY}}</a></li>
             </ul>
         </nav>
     </header>

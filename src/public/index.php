@@ -9,16 +9,21 @@ declare(strict_types=1);
 
 namespace Seba;
 
-define("ROOT_DIR", dirname(dirname(__DIR__)));
+require_once __DIR__ . "/../envirorment.php";
 
-require_once ROOT_DIR . "/vendor/autoload.php";
+if(str_starts_with($_SERVER['REQUEST_URI'], "/preview/")){
+    $page = str_replace("/preview", "", $_SERVER['REQUEST_URI']);
+    $previewPath = \ROOT_DIR . "/src/previews/" . urlencode($page) . ".png";
 
-$settings = json_decode(strtr(
-    file_get_contents(ROOT_DIR . "/src/racca.me.json"), [
-        "@" => ROOT_DIR
-    ]
-));
+    if(file_exists($previewPath)){
+        header('Content-Type: image/png');
+        readfile($previewPath);
+    } else{
+        $image = new \mikehaertl\wkhtmlto\Image('https://' . $_SERVER['SERVER_NAME'] . $page);
+        $image->saveAs($previewPath);
+        $image->send();
+    }
 
-$website = new Components\Website($settings);
-
-$website->send(isset($_GET['api']));
+} else{
+    $website->send(isset($_GET['api']));
+}

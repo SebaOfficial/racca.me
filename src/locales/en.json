@@ -62,6 +62,22 @@
                 }
             }
         },
+        "pay": {
+            "title": "Support Open Source: Donate or Hire for Services",
+            "description": "Explore multiple avenues to support my open-source endeavors - from contributing to my projects through donations to availing my professional services. Your contributions empower the growth of these projects and allow for continued innovation.",
+            "navigator": "Donate",
+            "h1": "Donate & Pay",
+            "content": {
+                "title": "Support Me",
+                "sub-title": "Every donation is apreciated <3",
+                "bmc": "So tired, why don't you buy me a coffee?",
+                "form": {
+                    "method": "Payment Method:",
+                    "ammount": "Ammount to Pat:",
+                    "submit": "Donate/Pay"
+                }
+            }
+        },
         "404":{
             "title": "Not Found",
             "description": "Oops, page not found, go back to racca.me",
