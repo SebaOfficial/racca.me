@@ -61,6 +61,22 @@
                 }
             }
         },
+        "pay": {
+            "title": "Supporta L'Open Source: Dona o Assumi per Servizi",
+            "description": "Esplora più strade per supportare i miei progetti open source - dal contribuire ai miei progetti attraverso donazioni all'utilizzo dei miei servizi professionali. I tuoi contributi potenziano la crescita di questi progetti e consentono una continua innovazione.",
+            "navigator": "Dona",
+            "h1": "Dona & Paga",
+            "content": {
+                "title": "Supportami",
+                "sub-title": "Ogni donazione è ben accetta <3",
+                "bmc": "Che stanchezza, perchè non mi compri un caffè?",
+                "form": {
+                    "method": "Metodo di pagamento:",
+                    "ammount": "Ammontare:",
+                    "submit": "Dona/Paga"
+                }
+            }
+        },
         "404":{
             "title": "Not Found",
             "description": "Oops, pagina non trovata, torna su racca.me",
