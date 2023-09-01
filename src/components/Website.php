@@ -259,7 +259,6 @@ final class Website{
      * @return string          The actual url.
      */
     public function getPaymentUrl(string $method, int $amount): string{
-        $url = $this->settings->payments->urls;
 
         if($method === "card"){
             $stripe = new \Stripe\StripeClient($_ENV['STRIPE_SECRET_KEY']);
@@ -285,11 +284,11 @@ final class Website{
         }
 
         else if($method === "paypal"){
-            return $url->paypal . $amount/100 . "EUR";
+            return $_ENV['PAYPAL_LINK'] . $amount/100 . "EUR";
         }
 
         else if($method === "satispay"){
-            return $url->satispay . "?amount=$amount";
+            return $_ENV['SATISPAY_LINK'] . "?amount=$amount";
         }
     }
 }
