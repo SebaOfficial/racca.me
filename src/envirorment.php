@@ -15,4 +15,4 @@ $settings = json_decode(strtr(
     ]
 ));
 
-$website = new Components\Website($settings);
+$website = new Website($settings);

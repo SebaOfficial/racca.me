@@ -1,29 +1,29 @@
 <div class="form">
-    <h2>{{CONTACTS.TITLE}}</h2>
+    <h2>#{{content.title}}</h2>
 
     <form onsubmit="event.preventDefault(); submitContactForm();">
         <div>
-            <label hidden for="subject">{{CONTACTS.FORM.SUBJECT.LABEL}}</label>
-            <input class="feedback-input" type="text" id="subject" placeholder="{{CONTACTS.FORM.SUBJECT.PLACEHOLDER}}" required>
+            <label hidden for="subject">#{{content.form.subject.label}}</label>
+            <input class="feedback-input" type="text" id="subject" placeholder="#{{content.form.subject.placeholder}}" required>
         </div>
         <div>
-            <label hidden for="name">{{CONTACTS.FORM.NAME.LABEL}}</label>
-            <input class="feedback-input" type="text" id="name" placeholder="{{CONTACTS.FORM.NAME.PLACEHOLDER}}" required>
+            <label hidden for="name">#{{content.form.name.label}}</label>
+            <input class="feedback-input" type="text" id="name" placeholder="#{{content.form.name.placeholder}}" required>
         </div>
         <div>
-            <label hidden for="message">{{CONTACTS.FORM.MESSAGE.LABEL}}</label>
-            <textarea class="feedback-input" id="message" placeholder="{{CONTACTS.FORM.MESSAGE.PLACEHOLDER}}" required></textarea>
+            <label hidden for="message">#{{content.form.message.label}}</label>
+            <textarea class="feedback-input" id="message" placeholder="#{{content.form.message.placeholder}}" required></textarea>
         </div>
         <div>
-            <button type="submit">{{CONTACTS.FORM.SUBMIT}}</button>
+            <button type="submit">#{{content.form.submit}}</button>
         </div>
     </form>
 
     <div class="form-options">
-        <a href="https://t.me/SebaOfficial" target="_blank">
+        <a href="https://t.me/SebaOfficial" target="_blank" rel="noreferrer">
             <img class="circle-image" src="/assets/svgs/telegram.svg" alt="Telegram Logo">
         </a>
-        <a href="https://github.com/SebaOfficial" target="_blank">
+        <a href="https://github.com/SebaOfficial" target="_blank" rel="noreferrer">
             <img class="circle-image" src="/assets/svgs/github.svg" alt="Github Logo">
         </a>
     </div>

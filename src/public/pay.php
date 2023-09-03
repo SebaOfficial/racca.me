@@ -1,9 +1,10 @@
 <?php
 
-require_once __DIR__ . "/../envirorment.php";
+require_once __DIR__ . "/../src/envirorment.php";
 
 use Seba\HTTP\{IncomingRequestHandler, ResponseHandler, Exceptions\InvalidContentTypeException, Exceptions\InvalidBodyException};
 
+$website = new Seba\Website($settings);
 $response = new ResponseHandler();
 $request = new IncomingRequestHandler();
 

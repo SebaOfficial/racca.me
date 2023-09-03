@@ -1,9 +1,10 @@
 {
+    "server_url": "https://racca.me/",
     "pages": {
         "path": "@/src/pages/"
     },
     "languages": {
         "path": "@/src/locales/",
-        "default": "en"
+        "default": "en-US"
     }
 }

@@ -1,6 +1,8 @@
 vendor/
 composer.lock
 
+dist/
+
 .env*
 !.env.example
 

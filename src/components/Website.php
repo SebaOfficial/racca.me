@@ -3,157 +3,84 @@
  * Website Class.
  * This class provides the website to the client.
  * 
- * @package Seba\Components
+ * @package Seba
  * @author Sebastiano Racca
  */
 declare(strict_types=1);
 
-namespace Seba\Components;
+namespace Seba;
 
-use GuzzleHttp\Client;
+use Seba\HTTP\{IncomingRequestHandler, ResponseHandler};
 
 
-final class Website{
-    public string $uri;
-    public string $page;
-    public string $lang;
-    public Translator $translator;
-    public HTTP\Response $response;
-    private string $pageContents;
+class Website{
+    protected IncomingRequestHandler $request;
+    protected ResponseHandler $response;
     protected object $settings;
-    protected array $availableLanguages;
+    private array $languages;
+    private array $pages;
 
     public function __construct(object $settings){
         $this->settings = $settings;
-        $this->response = new HTTP\Response(200);
-        $this->setRequestUri();
-        $this->setPageInfo();
-        $this->initializeTranslator();
+        $this->response = new ResponseHandler();
+        $this->request = new IncomingRequestHandler();
     }
 
     /**
-     * Sets the request URI.
+     * From a given text returns all the variables like '#{{var}}'
      * 
-     * @return void
+     * @param string $text   The text to search.
+     * 
+     * @return array         List of variables.
      */
-    private function setRequestUri(): void{
-        $this->uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    private function getVariables(string $text): array{
+        preg_match_all('/#{{(.*?)}}/', $text, $matches);
+        return $matches[1];
     }
 
     /**
-     * Sets the page information from the request.
-     * 
-     * @return void
+     * Replaces the placeholder with the actual text value
      */
-    private function setPageInfo(): void{
-        $resources = explode("/", $this->uri); // The uri should look like /{language}/resource
-
-        $this->lang = in_array($resources[1], $this->getLanguages()) ? $resources[1] : $this->settings->languages->default;
-        $this->page = (isset($resources[2]) && $resources[2] !== "") ? $resources[2] : "index";
-
-        $files = array_map(fn ($file) => pathinfo($file, PATHINFO_FILENAME), array_filter(glob(\ROOT_DIR . "/src/pages/*.html"), fn ($file) => $file !== \ROOT_DIR . "/src/pages/404.html"));
-
-        $this->page = in_array($this->page, $files) ? $this->page : "404";
-
-        $this->pageContents = file_get_contents($this->settings->pages->path . $this->page . ".html");
-
-        if($this->page == "404")
-            $this->response->setHttpCode(404);
+    private function replacePlaceholders($match, $texts){
+        $keys = explode('.', $match[1]);
+    
+        foreach ($keys as $key) {
+            if (isset($texts[$key])) {
+                $texts = $texts[$key];
+            } else {
+                return $match[0]; // Return the original placeholder if key doesn't exist
+            }
+        }
+    
+        return $texts;
     }
 
     /**
-     * Returns an array of absolute paths of all the pages.
+     * Removes the file extension.
      * 
-     * @return array   The actual pages.
-     */
-    private function getAllPages(): array{
-        return glob($this->settings->pages->path . "*.html");
-    }
-
-    /**
-     * Returns an array of all the navigators for the translator.
+     * @param string $string   The file name.
      * 
-     * @return array   Associative array for the translator.
+     * @return string          The file name without the exitension.
      */
-    private function getNavigators(): array{
+    public function removeExtension(string $string): string{
+        $lastDotPosition = strrpos($string, ".");
 
-        $pages = array_map(function($element) {
-            return strtr($element, [
-                ".html" => "",
-                $this->settings->pages->path => ""
-            ]);
-        }, $this->getAllPages());
-        
-        $navigators = [];
-        
-        foreach ($pages as $page) {
-            $navigators["{{NAVIGATOR." . strtoupper($page) . "}}"] = $this->translator->pages->{$page}->navigator ?? "";
+        if ($lastDotPosition !== false) {
+            return substr($string, 0, $lastDotPosition);
         }
 
-        return $navigators;
-        
+        return $string;
     }
 
     /**
-     * Initializes the translator.
-     * 
-     * @return void
-     */
-    private function initializeTranslator(): void{
-        $this->translator = new Translator(
-            json_decode(file_get_contents($this->settings->languages->path . "$this->lang.json"), true),
-            [
-                "{{USER_LANGUAGE}}" => $this->lang,
-                "{{DEFAULT_USER_LANGUAGE}}" => $this->settings->languages->default,
-                "'{{AVAILABLE_LANGUAGES}}'" => json_encode($this->availableLanguages),
-            ]
-        );
-
-        $this->translator->addTranslations(array_merge(
-            [
-                "{{DOC_TITLE}}" => $this->translator->pages->{$this->page}->title,
-                "{{DOC_DESCRIPTION}}" => $this->translator->pages->{$this->page}->description,
-                "{{CURRENT_PAGE}}" => $this->uri,
-                "{{CURRENT_SHORT_PAGE}}" => $this->page,
-                "{{DOC_PREVIEW}}" => $this->translator->pages->{$this->page}->preview,
-                "{{SECTION_TITLE}}" => $this->translator->pages->{$this->page}->h1,
-            ],
-            $this->getNavigators(),
-            match($this->page){
-                "index" => [
-                    "{{BIO}}" => $this->getBio(),
-                ],
-                "projects" => [
-                    "{{PROJECTS.TITLE}}" => $this->translator->pages->{"projects"}->content->title,
-                    "{{PROJECTS}}" => $this->getProjects(),
-                ],
-                "contacts" => [
-                    "{{CONTACTS.TITLE}}" => $this->translator->pages->{"contacts"}->content->title,
-                    "{{CONTACTS.FORM.SUBJECT.LABEL}}" => $this->translator->pages->{"contacts"}->content->form->subject->label,
-                    "{{CONTACTS.FORM.SUBJECT.PLACEHOLDER}}" => $this->translator->pages->{"contacts"}->content->form->subject->placeholder,
-                    "{{CONTACTS.FORM.NAME.LABEL}}" => $this->translator->pages->{"contacts"}->content->form->name->label,
-                    "{{CONTACTS.FORM.NAME.PLACEHOLDER}}" => $this->translator->pages->{"contacts"}->content->form->name->placeholder,
-                    "{{CONTACTS.FORM.MESSAGE.LABEL}}" => $this->translator->pages->{"contacts"}->content->form->message->label,
-                    "{{CONTACTS.FORM.MESSAGE.PLACEHOLDER}}" => $this->translator->pages->{"contacts"}->content->form->message->placeholder,
-                    "{{CONTACTS.FORM.SUBMIT}}" => $this->translator->pages->{"contacts"}->content->form->submit,
-                ],
-                default => [
-                    "{{NOTFOUND.TITLE}}" => $this->translator->pages->{"404"}->content->title,
-                    "{{NOTFOUND.DESCRIPTION}}" => $this->translator->pages->{"404"}->content->description,
-                ]
-            }
-        ));
-
-    }
-
-    /**
-     * Gets the languages and sets them.
+     * Gets all the available languages.
      * 
      * @return array   The languages.
      */
-    private function getLanguages(): array{
-        if (($this->availableLanguages ?? NULL) === null) {
-            $this->availableLanguages = array_map(
+    public function getLanguages(): array{
+
+        if (!isset($this->languages)) {
+            $this->languages = array_map(
                 function ($path) {
                     return strtr($path, [".json" => "", $this->settings->languages->path => ""]);
                 },
@@ -161,94 +88,76 @@ final class Website{
             );
         }
 
-        return $this->availableLanguages;
+        return $this->languages;
     }
 
     /**
-     * Gets the bio.
+     * Returns an array of absolute paths of all the pages.
      * 
-     * @return string   The HTML bio.
+     * @return array   The actual pages.
      */
-    private function getBio(): string{
-        $str = "";
-        foreach ($this->translator->pages->{"index"}->texts['content'] as $element) {
-            $str .= "<h2>" . $element['title'] . "</h2><p>" . $element['content'] . "</p>";
+    public function getPages(): array{
+        if(!isset($this->pages)){
+            $this->pages = array_map(function($element) {
+                return strtr($element, [
+                    $this->settings->pages->path => ""
+                ]);
+            }, glob($this->settings->pages->path . "*"));
         }
-        return $str;
+
+        return $this->pages;
     }
 
     /**
-     * Gets the projects from GitHub.
+     * Returns the body of a page
      * 
-     * @return string   The HTML projects.
+     * @param string $page         The page name (without extension).
+     * @param string $lang         The language of the page.
+     * @param bool $onlyContents   Wheter the function should return the full body or just the main content.
+     * 
+     * @return string              The actual page.
      */
-    private function getProjects(): string{
-        $client = new Client();
-        $str = "";
+    public function getPage(string $page, string $lang, bool $onlyContents): string {
+        $texts = json_decode(file_get_contents($this->settings->languages->path . $lang . ".json"), true);
+        $pageName = $this->removeExtension($page);
     
-        $response = $client->get('https://api.github.com/users/SebaOfficial/repos?type=public');
+        if (pathinfo($page, PATHINFO_EXTENSION) === 'php') {
+            ob_start();
+            include $this->settings->pages->path . $page;
+            $content = ob_get_clean();
+        }
+
+        $content = $actualPage = preg_replace_callback('/#{{(.*?)}}/', function ($match) use ($texts, $pageName) {
+            return $this->replacePlaceholders($match, $texts["pages"][$pageName]);
+        }, $content ?? file_get_contents($this->settings->pages->path . $page));
     
-        $repos = json_decode((string) $response->getBody());
-    
-        // Sort the repositories by stargazers_count in descending order
-        usort($repos, function($a, $b) {
-            return $b->stargazers_count - $a->stargazers_count;
-        });
-    
-        foreach ($repos as $repo) {
-            $str .= "
-                <div itemscope itemtype='http://schema.org/SoftwareSourceCode' class='repository'>
-                    <h3><a itemprop='codeRepository' class='active' href='https://github.com/$repo->full_name' target='_blank'>$repo->full_name </a></h3>
-                    <p itemprop='description'>$repo->description</p>
-                    <span class='star'>
-                        <span class='fa fa-star'></span>
-                        $repo->stargazers_count " . ($repo->stargazers_count == 1 ? $this->translator->pages->{"projects"}->content->star->singular : $this->translator->pages->{"projects"}->content->star->plural) ."
-                    </span>
-                </div>";
+        if ($onlyContents) {
+            return $content;
         }
     
-        return $str;
-    }    
-
-    /**
-     * Replaces placeholders in a given text.
-     * 
-     * @param string $text   The text to replace placeholders in.
-     * 
-     * @return string   The text with replaced placeholders.
-     */
-    private function replacePlaceholders(string $text): string{
-        return $this->translator->tr($text);
+        $actualPage = preg_replace_callback('/#{{(.*?)}}/', function ($match) use ($texts, $pageName) {
+            return $this->replacePlaceholders($match, $texts["pages"][$pageName]);
+        }, file_get_contents(ROOT_DIR . "/src/template.html"));
+    
+        $actualPage = preg_replace_callback('/#{{(.*?)}}/', function ($match) use ($texts) {
+            return $this->replacePlaceholders($match, $texts["pages"]);
+        }, $actualPage);
+    
+        return strtr(
+            $actualPage,
+            array_merge(
+                [
+                    "#{{CURRENT_PAGE}}" => $pageName,
+                    "#{{CURRENT_PAGE_NO_INDEX}}" => $pageName == "index" ? "" : $pageName,
+                    "#{{LANGUAGE}}" => $lang,
+                    "#{{DEFAULT_LANGUAGE}}" => $this->settings->languages->default,
+                    "`#{{AVAILABLE_LANGUAGES}}`" => json_encode($this->getLanguages()),
+                    "#{{PAGE_CONTENTS}}" => $content,
+                ]
+            )
+        );
     }
 
-    /**
-     * Sends the web page to the client.
-     * 
-     * @param bool $isApi   Whether the page should be displayed as APIs or not.
-     * 
-     * @return void
-     */
-    public function send(bool $isApi): void{
-        $this->pageContents = $this->replacePlaceholders($this->pageContents);
-
-        $body = $isApi
-            ? json_encode([
-                "mainContent" => $this->pageContents,
-                "sectionTitle" => $this->translator->pages->{$this->page}->h1,
-                "title" => $this->translator->pages->{$this->page}->title,
-                ])
-            : str_replace("{{PAGE_CONTENTS}}", $this->pageContents, $this->replacePlaceholders(file_get_contents(ROOT_DIR . "/src/template.html")))
-        ;
-
-        $cache = new Cache($_SERVER['REQUEST_URI'], $body, 86400);
-
-        $this->response->setBody($cache->get())
-            ->setHeaders([
-                "Cache-Control:" => "public, max-age=604800",
-                "Content-Type" => $isApi ? "application/json" : "text/html"
-            ])
-            ->send();
-    }
 
     /**
      * Returns the url for the payment.
@@ -291,4 +200,5 @@ final class Website{
             return $_ENV['SATISPAY_LINK'] . "?amount=$amount";
         }
     }
+
 }

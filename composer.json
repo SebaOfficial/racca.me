@@ -5,8 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Seba\\Components\\": "src/components/",
-            "Seba\\Components\\HTTP\\": "src/components/HTTP/"
+            "Seba\\": "src/components/"
         }
     },
     "authors": [
@@ -25,6 +24,6 @@
         "vlucas/phpdotenv": "^5.5"
     },
     "scripts": {
-        "bootstrap": "git pull origin main && composer update && composer dump-autoload"
+        "build": "@php src/build.php"
     }
 }

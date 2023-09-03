@@ -1,8 +1,4 @@
 @import './main.css';
-/* HOME */
-#home p{
-    margin: 15px 0 35px 0;
-}
 
 /* FORMS */
 .form{
@@ -98,43 +94,4 @@ input[type="radio"]{
 
 .form [type="submit"]:hover {
     background: rgb(65, 130, 228);
-}
-
-/* PROJECTS */
-#projects h2{
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#projects .repository {
-    padding: 1em;
-    background-color: rgba(0, 0, 0, 0.177);
-    margin: 1em;
-    border-radius: 15px;
-}
-
-#projects .star {
-    color: orange;
-}
-
-#projects > div {
-  height: 35em;
-  overflow: auto;
-}
-
-
-/* NOT FOUND */
-#notFound-header{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-#notFound div p{
-    margin-left: 20px;
-}
-
-#notFound img{
-    max-width: 100px;
-    max-height: 100px;
 }

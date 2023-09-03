@@ -1,35 +1,43 @@
 {
     "pages": {
         "index": {
-            "title": "Sebastiano Racca - Developer",
-            "description": "Welcome to Sebastiano Racca's portfolio website, showcasing my passion for informatics and the world. Explore my projects and get in touch with me.",
-            "navigator": "Home",
-            "h1": "Seba",
+            "doc": {
+                "title": "Sebastiano Racca - Developer",
+                "description": "Welcome to Sebastiano Racca's portfolio website, showcasing my passion for informatics and the world. Explore my projects and get in touch with me." 
+            },
+            "section": {
+                "title": "Seba",
+                "navigator": "Home"
+            },
             "content": [
                 {
                 
                     "title": "Based in italy",
-                    "content": "I am an italian student, pursuing my education and constantly seeking knowledge and personal growth in various fields."
+                    "description": "I am an italian student, pursuing my education and constantly seeking knowledge and personal growth in various fields."
                 },
                 {
-                    "title": "PHP Developer",
-                    "content": "As a skilled PHP developer, I specialize in creating web applications and websites. Additionally, I have expertise in developing Telegram bots."
+                    "title": "Developer",
+                    "description": "As an experienced web developer, I specialize in creating web applications, websites, and APIs using various programming languages and technologies. Additionally, I have a strong background in Telegram bot development and possess the skills to design and implement RPAs (Robotic Process Automations) to streamline complex tasks and processes."
                 },
                 {
                     "title": "Scout Enthusiast",
-                    "content": "Being a scout is an integral part of my life. It has shaped my character, taught me valuable life skills, and allowed me to contribute to my community through teamwork, leadership, and outdoor activities."
+                    "description": "Being a scout is an integral part of my life. It has shaped my character, taught me valuable life skills, and allowed me to contribute to my community through teamwork, leadership, and outdoor activities."
                 },
                 {
                     "title": "Advocate for Equal Rights",
-                    "content": "I am deeply interested in social issues, particularly those related to ecology, ethnic diversity, and political minorities. I actively support initiatives that aim to create a more inclusive and sustainable world."
+                    "description": "I am deeply interested in social issues, particularly those related to ecology, ethnic diversity, and political minorities. I actively support initiatives that aim to create a more inclusive and sustainable world."
                 }
             ]
         },
         "contacts": {
-            "title": "Contact Me",
-            "description": "Get in touch with Sebastiano Racca and connect directly for inquiries, collaborations, or any questions you may have. Reach out to discuss projects, partnerships, or opportunities.",
-            "navigator": "Contacts",
-            "h1": "Contacts",
+            "doc": {
+                "title": "Contact Me",
+                "description": "Get in touch with Sebastiano Racca and connect directly for inquiries, collaborations, or any questions you may have. Reach out to discuss projects, partnerships, or opportunities."  
+            },
+            "section": {
+                "title": "Contacts",
+                "navigator": "Contacts"
+            },
             "content": {
                 "title": "Get in Touch",
                 "form": {
@@ -50,10 +58,14 @@
             }
         },
         "projects": {
-            "title": "Open Source Projects",
-            "description": "Explore Sebastiano Racca's open source projects from GitHub, ranging libraries to full projects.",
-            "navigator": "Projects",
-            "h1": "Projects",
+            "doc": {
+                "title": "Open Source Projects",
+                "description": "Explore Sebastiano Racca's open source projects from GitHub, ranging libraries to full projects." 
+            },
+            "section": {
+                "title": "Projects",
+                "navigator": "Projects"
+            },
             "content": {
                 "title": "Open source projects from GitHub",
                 "star": {
@@ -63,25 +75,33 @@
             }
         },
         "pay": {
-            "title": "Support Open Source: Donate or Hire for Services",
-            "description": "Explore multiple avenues to support my open-source projects - from contributing to my projects through donations to availing my professional services. Your contributions empower the growth of these projects and allow for continued innovation.",
-            "navigator": "Donate",
-            "h1": "Donate & Pay",
+            "doc": {
+                "title": "Support Open Source: Donate or Hire for Services",
+                "description": "Explore multiple avenues to support my open-source projects - from contributing to my projects through donations to availing my professional services. Your contributions empower the growth of these projects and allow for continued innovation."   
+            },
+            "section": {
+                "title": "Donate",
+                "navigator": "Donate & Pay"
+            },
             "content": {
                 "title": "Support Me",
                 "sub-title": "Every donation is apreciated <3",
                 "bmc": "So tired, why don't you buy me a coffee?",
                 "form": {
                     "method": "Payment Method:",
-                    "ammount": "Ammount to Pay:",
+                    "ammount": "Ammount:",
                     "submit": "Donate/Pay"
                 }
             }
         },
         "404":{
-            "title": "Not Found",
-            "description": "Oops, page not found, go back to racca.me",
-            "h1": "Not Found",
+            "doc": {
+                "title": "Not Found",
+                "description": "Oops, page not found, go back to racca.me"  
+            },
+            "section": {
+                "title": "Not Found"
+            },
             "content": {
                 "title": "This page doesn't exists",
                 "description": "But don't worry"
