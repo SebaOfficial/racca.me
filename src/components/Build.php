@@ -118,6 +118,7 @@ final class Build extends Website{
                 }
         
                 file_put_contents("$current$pageName.html", $this->getPage($page, $lang, false));
+                
                 if($lang == $this->settings->languages->default){
                     file_put_contents(self::DIST_DIR . "$pageName.html", $this->getPage($page, $lang, false));
                 }

@@ -5,6 +5,6 @@
     },
     "languages": {
         "path": "@/src/locales/",
-        "default": "en-US"
+        "default": "en"
     }
 }
