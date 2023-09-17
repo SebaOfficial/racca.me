@@ -1,10 +1,12 @@
 {
     "name": "seba/racca.me",
-    "description": "Just my personal website",
     "type": "project",
+    "description": "Just my personal website",
     "license": "MIT",
     "autoload": {
         "psr-4": {
+            "PHPStatic\\": "PHPStatic/Components/",
+            "PHPStatic\\Exceptions\\": "PHPStatic/Exceptions/",
             "Seba\\": "src/components/"
         }
     },
@@ -16,14 +18,34 @@
     ],
     "require": {
         "php": ">=8",
-        "symfony/cache": "^6.3",
+        "cboden/ratchet": "^0.4.4",
+        "erusev/parsedown": "^1.7",
         "guzzlehttp/guzzle": "^7.7",
-        "stripe/stripe-php": "^12.0",
         "seba/http": "^1.0",
-        "mikehaertl/phpwkhtmltopdf": "^2.5",
-        "vlucas/phpdotenv": "^5.5"
+        "vlucas/phpdotenv": "^5.5",
+        "stripe/stripe-php": "^12.3"
     },
     "scripts": {
-        "build": "@php src/build.php"
+        "build": [
+            "@php PHPStatic/build.php",
+            "@php src/previews.php"
+        ],
+        "build-on-changes": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php PHPStatic/build-on-changes.php"
+        ],
+        "start": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php PHPStatic/start.php"
+        ],
+        "docs": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php PHPStatic/docs.php"
+        ],
+        "post-root-package-install": "",
+        "post-create-project-cmd": ""
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

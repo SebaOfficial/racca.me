@@ -4,7 +4,7 @@ require_once __DIR__ . "/../src/envirorment.php";
 
 use Seba\HTTP\{IncomingRequestHandler, ResponseHandler, Exceptions\InvalidContentTypeException, Exceptions\InvalidBodyException};
 
-$website = new Seba\Website($settings);
+$website = new Seba\Website();
 $response = new ResponseHandler();
 $request = new IncomingRequestHandler();
 
@@ -39,7 +39,7 @@ if($params !== false){
     if(in_array($params['method'], ["card", "paypal", "satispay"])){
 
         if(filter_var($params['amount'], FILTER_VALIDATE_INT) !== false){
-            $url = $website->getPaymentUrl($params['method'], $params['amount']);
+            $url = $website::getPaymentUrl($params['method'], $params['amount']);
             $response->setHttpCode(201)
                 ->setBody([
                     "url" => $url

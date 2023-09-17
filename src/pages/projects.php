@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../envirorment.php";
+
 $client = new \GuzzleHttp\Client([
     'headers' => [
         'Authorization' => 'Bearer ' . $_ENV['GITHUB_TOKEN'],

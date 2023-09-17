@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="#{{LANGUAGE}}">
+<html lang="#{{CURRENT_LANGUAGE}}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="alternate" hreflang="en" href="https://racca.me/en/#{{CURRENT_PAGE_NO_INDEX}}">
-    <link rel="alternate" hreflang="it" href="https://racca.me/it/#{{CURRENT_PAGE_NO_INDEX}}">
-    <link rel="alternate" href="https://racca.me/#{{CURRENT_PAGE_NO_INDEX}}" hreflang="x-default">
+    <link rel="alternate" hreflang="en" href="#{{WEBSITE_URL}}/en/#{{CURRENT_PAGE_NO_INDEX}}">
+    <link rel="alternate" hreflang="it" href="#{{WEBSITE_URL}}/it/#{{CURRENT_PAGE_NO_INDEX}}">
+    <link rel="alternate" href="#{{WEBSITE_URL}}/#{{CURRENT_PAGE_NO_INDEX}}" hreflang="x-default">
 
 
     <meta itemprop="name" content="#{{doc.title}}">
     <meta itemprop="description" content="#{{doc.description}}">
-    <meta itemprop="image" content="https://racca.me/assets/previews/#{{CURRENT_PAGE}}.png">
+    <meta itemprop="image" content="#{{WEBSITE_URL}}/assets/previews/#{{CURRENT_LANGUAGE}}-#{{CURRENT_PAGE}}.png">
     
     <meta name="description" content="#{{doc.description}}">
     <meta property="og:description" content="#{{doc.description}}">
@@ -21,19 +21,19 @@
     <meta property="og:title" content="#{{doc.title}}">
     <title>#{{doc.title}}</title>
 
-    <meta property="og:url" content="https://racca.me/#{{CURRENT_PAGE}}">
+    <meta property="og:url" content="#{{WEBSITE_URL}}/#{{CURRENT_PAGE}}">
     <meta property="og:type" content="website">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="800">
-    <meta property="og:image" content="https://racca.me/assets/previews/#{{CURRENT_PAGE}}.png">
+    <meta property="og:image" content="#{{WEBSITE_URL}}/assets/previews/#{{CURRENT_LANGUAGE}}-#{{CURRENT_PAGE}}.png">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="#{{doc.title}}">
     <meta name="twitter:description" content="#{{doc.description}}">
-    <meta name="twitter:image" content="https://racca.me/assets/previews/#{{CURRENT_PAGE}}.png">
+    <meta name="twitter:image" content="#{{WEBSITE_URL}}/assets/previews/#{{CURRENT_LANGUAGE}}-#{{CURRENT_PAGE}}.png">
     
-    <link rel="canonical" href="https://racca.me/#{{LANGUAGE}}/#{{CURRENT_PAGE_NO_INDEX}}">
+    <link rel="canonical" href="#{{WEBSITE_URL}}/#{{CURRENT_LANGUAGE}}/#{{CURRENT_PAGE_NO_INDEX}}">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -54,10 +54,10 @@
 
         <nav>
             <ul>
-                <li><a class="active" title="Home Page" href="/#{{LANGUAGE}}/">#{{index.section.navigator}}</a></li>
+                <li><a class="active" title="Home Page" href="/#{{CURRENT_LANGUAGE}}/">#{{index.section.navigator}}</a></li>
                 <li><a class="active" title="Contact Page" href="contacts">#{{contacts.section.navigator}}</a></li>
                 <li><a class="active" title="Project Page" href="projects">#{{projects.section.navigator}}</a></li>
-                <li><a class="active" title="Donate & Pay Page" href="pay">#{{pay.section.navigator}}</a></li>
+                <li><a class="active" title="Donate &amp; Pay Page" href="pay">#{{pay.section.navigator}}</a></li>
             </ul>
         </nav>
 
@@ -69,30 +69,18 @@
 
 
     <script>
-        
-        const languages = `#{{AVAILABLE_LANGUAGES}}`;
-        const userLanguage = (navigator.language || navigator.userLanguage).substr;
-        const page = window.location.pathname.split('/')[2];
+        let page = window.location.pathname.split('/')[2];
         let pageLink;
+
+        if(page.startsWith("index")){
+            window.history.replaceState({}, document.title, window.location.href.substring(0, window.location.href.length - page.length));
+            page = window.location.pathname.split('/')[2];
+        }
 
         let uri = window.location.pathname;
 
-
-        if(!languages.includes(uri.split('/')[1])){ // The language is not set
-            uri = `/#{{DEFAULT_LANGUAGE}}${uri}`;
-
-            if(userLanguage === '#{{DEFAULT_LANGUAGE}}'){
-                history.replaceState({}, document.title, uri);
-
-            } else{
-                window.location.href = uri;
-
-            }
-
-        }
-
         if (page === "") {
-            pageLink = document.querySelector('nav').querySelector(`a[href="/#{{LANGUAGE}}/"]`);
+            pageLink = document.querySelector('nav').querySelector(`a[href="/#{{CURRENT_LANGUAGE}}/"]`);
         } else {
             pageLink = document.querySelector('nav').querySelector(`a[href="${page}"]`);
         }

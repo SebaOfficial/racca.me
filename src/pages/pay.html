@@ -105,7 +105,7 @@
             let method = extractPaymentMethod(selectedPayment.src);
 
             try {
-                const response = await fetch("/pay.php", {
+                const response = await fetch("/pay-api.php", {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json"
