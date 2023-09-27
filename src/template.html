@@ -72,12 +72,12 @@
         let navLink;
         
         window.history.replaceState({}, document.title, window.location.pathname.replace(/\.[^/.]+$/, ""));
+        window.history.replaceState({}, document.title, window.location.pathname.replace("index", ""));
         
         let pageName = window.location.href.split('/').pop();
 
-        if (pageName === "index") {
+        if (pageName === "") {
             navLink = document.querySelector('nav').querySelector(`a[href="/#{{CURRENT_LANGUAGE}}/"]`);
-            window.history.replaceState({}, document.title, window.location.pathname.replace("index", ""));
         } else {
             navLink = document.querySelector('nav').querySelector(`a[href="${pageName}"]`);
         }
