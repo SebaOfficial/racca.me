@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>https://racca.me/en/contacts.html</loc>
+		<lastmod>2023-09-18</lastmod>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://racca.me/en/index.html</loc>
+		<lastmod>2023-09-18</lastmod>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>https://racca.me/en/pay.html</loc>
+		<lastmod>2023-09-18</lastmod>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://racca.me/en/projects.html</loc>
+		<lastmod>2023-09-18</lastmod>
+		<changefreq>weekly</changefreq>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://racca.me/en/404.html</loc>
+		<lastmod>2023-09-18</lastmod>
+		<priority>0.5</priority>
+	</url>
+</urlset>

@@ -16,17 +16,14 @@
         "port": null
     },
     "seo": {
-        "always": true,
-        "buildInPublic": false,
+        "always": false,
+        "buildInPublic": true,
         "url": "https://racca.me/",
         "sitemap": {
             "structure": "sitemap-#{{lang}}.xml",
             "pages": {
                 "index": {
                     "priority": 1
-                },
-                "404": {
-                    "priority": 0
                 },
                 "projects": {
                     "changefreq": "weekly"
@@ -35,8 +32,7 @@
         },
         "robots": {
             "disallow": [
-                "/en/404.html",
-                "/it/404.html"
+                "/*/404.*"
             ]
         }
     },
