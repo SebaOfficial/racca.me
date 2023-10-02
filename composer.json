@@ -28,6 +28,7 @@
     "scripts": {
         "build": [
             "@php PHPStatic/build.php",
+            "mkdir -p dist/assets/previews/",
             "@php src/previews.php"
         ],
         "build-on-changes": [
