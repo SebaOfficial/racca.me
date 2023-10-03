@@ -25,7 +25,7 @@ $repositories = "";
 foreach ($repos as $repo) {
     $repositories .= "
         <div itemscope itemtype='http://schema.org/SoftwareSourceCode' class='repository'>
-            <h3><a itemprop='codeRepository' class='active' href='https://github.com/$repo->full_name' target='_blank' rel='noreferrer'>$repo->full_name </a></h3>
+            <h3><a itemprop='codeRepository' class='active' href='https://github.com/$repo->full_name' title='$repo->name Repository' target='_blank' rel='noreferrer'>$repo->full_name</a></h3>
             <p itemprop='description'>$repo->description</p>
             <span class='star'>
                 <span class='fa fa-star'></span>
