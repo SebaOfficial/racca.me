@@ -1,6 +1,6 @@
 {
     "pages": {
-        "minify": true,
+        "minify": false,
         "path": "@/src/pages/",
         "public_path": "@/src/public/",
         "template": "@/src/template.html",
@@ -32,7 +32,8 @@
         },
         "robots": {
             "disallow": [
-                "/*/404.*"
+                "/*.php$",
+                "/*.html$"
             ]
         }
     },
