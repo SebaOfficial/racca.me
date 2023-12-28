@@ -9,13 +9,19 @@ $client = new \GuzzleHttp\Client([
     ]
 ]);
 
-$response = $client->get('https://api.github.com/users/SebaOfficial/repos?type=public');
+$sources = [
+    'users/SebaOfficial',
+    'orgs/TelegramSDK'
+];
 
-$repos = json_decode((string) $response->getBody());
-
+$repos = [];
+foreach ($sources as $source) {
+    $response = $client->get("https://api.github.com/$source/repos?type=public");
+    $repos = array_merge($repos, json_decode((string) $response->getBody()));
+}
 
 // Sort the repositories by stargazers_count in descending order
-usort($repos, function($a, $b) {
+usort($repos, function ($a, $b) {
     return $b->stargazers_count - $a->stargazers_count;
 });
 
@@ -52,7 +58,7 @@ foreach ($repos as $repo) {
 
     #projects .repository {
         padding: 1em;
-        background-color: rgba(0, 0, 0, 0.177);
+        background-color: rgba(176, 176, 176, 0.18);
         margin: 1em;
         border-radius: 15px;
     }
@@ -62,8 +68,8 @@ foreach ($repos as $repo) {
     }
 
     #projects > div {
-    height: 35em;
-    overflow: auto;
+        height: 35em;
+        overflow: auto;
     }
 
 </style>
