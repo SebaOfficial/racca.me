@@ -111,8 +111,9 @@ foreach($pages as $currentPage){
             if($settings->languages->redirectOnDefault ?? false){
                 $pageContents = <<<EOD
                 <?php
+                    \$lang = isset(\$_SERVER['HTTP_ACCEPT_LANGUAGE']) ? (preg_match('/^[a-zA-Z]{2,}$/', strtok(\$_SERVER['HTTP_ACCEPT_LANGUAGE'], ',')) ? strtok(\$_SERVER['HTTP_ACCEPT_LANGUAGE'], ',') : '$defaultLang') : '$defaultLang';
+                    header("Location: /\$lang/$pageName.html");
                     http_response_code(301);
-                    header("Location: /$defaultLang/$pageName.html");
                 ?>
                 $pageContents
                 EOD;
