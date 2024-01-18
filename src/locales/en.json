@@ -105,5 +105,8 @@
             "title": "This page doesn't exists",
             "description": "But don't worry"
         }
+    },
+    "blog": {
+        "title": "Seba's Blog"
     }
 }

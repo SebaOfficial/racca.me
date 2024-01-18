@@ -106,5 +106,8 @@
             "title": "La pagina non esiste",
             "description": "Ma non ti preoccupare"
         }
+    },
+    "blog": {
+        "title": "Blog di Seba"
     }
 }
