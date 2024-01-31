@@ -2,10 +2,10 @@
     --color1: #fcfcfc;
     --color2: #2c3e50;
     --color3: #4f5e6d;
-    --color4: #00bd7e;
+    --color4: #006140;
     --color5: #119da4;
     --color6: #469;
-    --color7: rgb(79, 149, 255);
+    --color7: #004EC2;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,5 +15,6 @@
         --color3: #fcfcfc;
         --color4: #01b076;
         --color5: #143d08;
+        --color7: #4F95FF;
     }
 }

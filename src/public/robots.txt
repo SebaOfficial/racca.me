@@ -1,6 +1,4 @@
 User-agent: *
-Disallow: /*.html$
-Disallow: /*.php$
 Allow: /it/
 Allow: /en/
 Sitemap: https://racca.me/sitemap-it.xml

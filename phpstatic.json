@@ -30,12 +30,7 @@
                 }
             }
         },
-        "robots": {
-            "disallow": [
-                "/*.php$",
-                "/*.html$"
-            ]
-        }
+        "robots": {}
     },
     "public_path": "@/src/public/",
     "global_variables": "@/src/variables.php"

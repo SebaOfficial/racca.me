@@ -50,6 +50,7 @@ foreach ($repos as $repo) {
 </div>
 
 <style>
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
     #projects h2{
         text-align: center;
@@ -64,7 +65,13 @@ foreach ($repos as $repo) {
     }
 
     #projects .star {
-        color: orange;
+        color: #6B4500;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        #projects .star {
+            color: #FFA500;
+        }
     }
 
     #projects > div {
