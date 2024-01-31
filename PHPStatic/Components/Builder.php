@@ -1,21 +1,22 @@
 <?php
 /**
  * Builder class.
- * 
+ *
  * @package PHPStatic
  * @author Sebastiano Racca
  */
 
 namespace PHPStatic;
 
-class Builder {
-
+class Builder
+{
     /**
      * Minifies an HTML string.
-     * 
+     *
      * @param string $buffer   The HTML to be minified.
      */
-    public static function minify(string $buffer) {
+    public static function minify(string $buffer)
+    {
         return preg_replace(
             [
                 '/\>[^\S ]+/s',     // strip whitespaces after tags, except space
@@ -35,12 +36,13 @@ class Builder {
 
     /**
      * Removes the file extension.
-     * 
+     *
      * @param string $string   The file name.
-     * 
+     *
      * @return string          The file name without the exitension.
      */
-    public static function removeExtension(string $string): string{
+    public static function removeExtension(string $string): string
+    {
         $lastDotPosition = strrpos($string, ".");
 
         if ($lastDotPosition !== false) {
@@ -50,9 +52,10 @@ class Builder {
         return $string;
     }
 
-    private static function replacePlaceholders($match, $texts){
+    private static function replacePlaceholders($match, $texts)
+    {
         $keys = explode('.', $match[1]);
-    
+
         foreach ($keys as $key) {
             if (isset($texts[$key])) {
                 $texts = $texts[$key];
@@ -60,19 +63,20 @@ class Builder {
                 return $match[0]; // Return the original placeholder if key doesn't exist
             }
         }
-    
+
         return $texts;
     }
 
     /**
      * Returns the body of a page
-     * 
+     *
      * @param string $page         The page name (without extension).
      * @param string $lang         The language of the page.
-     * 
+     *
      * @return string              The actual page.
      */
-    public static function getPage(array $globalVariables, string $templateContents, string $pagePath, string $pageName, array $texts, string $lang): string {
+    public static function getPage(array $globalVariables, string $templateContents, string $pagePath, string $pageName, array $texts, string $lang): string
+    {
         $fileExtension = strtolower(pathinfo($pagePath, PATHINFO_EXTENSION));
 
         if ($fileExtension === "php") {
@@ -81,7 +85,7 @@ class Builder {
             include $pagePath;
             $content = ob_get_clean();
 
-        } else if($fileExtension === "md"){
+        } elseif($fileExtension === "md") {
 
             $parsedown = new \Parsedown();
             $content = $parsedown->text(file_get_contents($pagePath));
@@ -96,11 +100,11 @@ class Builder {
             return self::replacePlaceholders($match, $texts);
         }, $content);
 
-        
+
         $template = preg_replace_callback('/#{{(.*?)}}/', function ($match) use ($texts, $pageName) {
             return self::replacePlaceholders($match, $texts[$pageName] ?? []);
         }, $templateContents);
-        
+
         $template = preg_replace_callback('/#{{(.*?)}}/', function ($match) use ($texts) {
             return self::replacePlaceholders($match, $texts);
         }, $template);
@@ -137,6 +141,6 @@ class Builder {
         }
 
         return $fullPage;
-    
+
     }
 }

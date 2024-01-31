@@ -39,12 +39,12 @@
 
         const body = encodeURIComponent(message.value + "\n\n~ " + name.value)
         const mailtoURL = `mailto:${mailtoAddress}?subject=${encodeURIComponent(subject.value)}&body=${body}`;
-        
+
         // Clearing the inputs
         subject.value = "";
         message.value = "";
         name.value = "";
-        
+
         window.location.href = mailtoURL;
 
     }

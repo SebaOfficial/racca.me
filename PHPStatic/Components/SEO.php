@@ -8,7 +8,8 @@
 
 namespace PHPStatic;
 
-class SEO {
+class SEO
+{
     private string $url;
     private array $pages;
 
@@ -17,7 +18,8 @@ class SEO {
      *
      * @param string|null $baseUrl   The base URL for the sitemap.
      */
-    public function __construct (?string $baseUrl) {
+    public function __construct(?string $baseUrl)
+    {
         $this->url = $baseUrl ?? ("http://" . gethostname() . "/");
         $this->pages = [];
     }
@@ -29,9 +31,10 @@ class SEO {
      *
      * @return string The formatted string representing the page.
      */
-    private function pageToString (array $page) :string{
+    private function pageToString(array $page): string
+    {
         $url = "\t<url>";
-        
+
         foreach ($page as $key => $value) {
             if ($value !== null) {
                 $url .= "\n\t\t<$key>$value</$key>";
@@ -48,10 +51,11 @@ class SEO {
      * @param string $lastMod           The last modification date of the page.
      * @param float  $priority          The priority of the page.
      * @param string|null $changefreq   The change frequency of the page.
-     * 
+     *
      * @return void
      */
-    public function addPage (string $location, string $lastMod, float $priority, ?string $changefreq = null): void{
+    public function addPage(string $location, string $lastMod, float $priority, ?string $changefreq = null): void
+    {
         $this->pages[] = [
             "loc" => $this->url . $location,
             "lastmod" => $lastMod,
@@ -62,19 +66,21 @@ class SEO {
 
     /**
      * Resets the sitemap by clearing all pages.
-     * 
+     *
      * @return void
      */
-    public function resetSitemap (): void{
+    public function resetSitemap(): void
+    {
         $this->pages = [];
     }
 
     /**
      * Gets the sitemap XML as a string.
-     * 
+     *
      * @return string   The sitemap XML.
      */
-    public function getSitemap (): string{
+    public function getSitemap(): string
+    {
         $urls = "";
         foreach ($this->pages as $page) {
             $urls .= "\n" . $this->pageToString($page);
@@ -87,12 +93,13 @@ class SEO {
         EOD;
     }
 
-    public function getRobots (array $allow, array $disallow, array $sitemaps) :string{
+    public function getRobots(array $allow, array $disallow, array $sitemaps): string
+    {
         return "User-agent: *\n" .
             "Disallow: " . implode("\nDisallow: ", $disallow) . "\n" .
             "Allow: " . implode("\nAllow: ", $allow) . "\n" .
             "Sitemap: $this->url" . implode("\nSitemap: $this->url", $sitemaps);
-    
+
     }
 
 }

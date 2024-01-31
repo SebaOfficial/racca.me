@@ -2,7 +2,8 @@
 
 require_once __DIR__ . "/envirorment.php";
 
-function addWatchRecursively($inotify, $directory) {
+function addWatchRecursively($inotify, $directory)
+{
     $watchDescriptor = inotify_add_watch($inotify, $directory, IN_MODIFY | IN_CREATE | IN_DELETE | IN_ISDIR);
 
     $subdirs = glob("$directory/*", GLOB_ONLYDIR);

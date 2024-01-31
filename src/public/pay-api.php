@@ -13,20 +13,20 @@ $response->setHeaders([
 ]);
 
 
-try{
-    
+try {
+
     $params = $request->getRequiredParams([
         "method",
         "amount"
     ]);
 
-} catch(InvalidContentTypeException){
+} catch(InvalidContentTypeException) {
     $response->setHttpCode(400)
         ->setBody([
             "error" => "Must specify the Content-Type header."
         ])
         ->send();
-} catch(InvalidBodyException){
+} catch(InvalidBodyException) {
     $response->setHttpCode(400)
         ->setBody([
             "error" => "Invalid Body provided."
@@ -34,11 +34,11 @@ try{
         ->send();
 }
 
-if($params !== false){
+if($params !== false) {
 
-    if(in_array($params['method'], ["card", "paypal", "satispay"])){
+    if(in_array($params['method'], ["card", "paypal", "satispay"])) {
 
-        if(filter_var($params['amount'], FILTER_VALIDATE_INT) !== false){
+        if(filter_var($params['amount'], FILTER_VALIDATE_INT) !== false) {
             $url = $website::getPaymentUrl($params['method'], $params['amount']);
             $response->setHttpCode(201)
                 ->setBody([
@@ -46,21 +46,21 @@ if($params !== false){
                 ])
                 ->setHeaders(["Location: $url"]);
 
-        } else{
+        } else {
             $response->setHttpCode(400)
                 ->setBody([
                     "error" => "The amount must be an integer."
                 ]);
         }
 
-    } else{
+    } else {
         $response->setHttpCode(400)
             ->setBody([
                 "error" => "Payment method not allowed."
             ]);
     }
 
-} else{
+} else {
     $response->setHttpCode(400)
         ->setBody([
             "error" => "Must specify all the required parameters."

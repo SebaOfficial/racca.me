@@ -22,7 +22,7 @@ $template = file_get_contents($paths->template);
 $sys::message("✔ Template loaded.\n", 2, true);
 
 
-if(is_dir($paths->dist)){
+if(is_dir($paths->dist)) {
     $sys::message("Removing old website...", 1);
     $sys::rrmdir($paths->dist);
     $sys::message("✔ Old Website removed  \n", 2, true);
@@ -31,7 +31,7 @@ if(is_dir($paths->dist)){
 
 $sys::message("Loading pages...", 1);
 
-if(!is_dir($paths->pages)){
+if(!is_dir($paths->pages)) {
     $sys::message("Pages couldn't be loaded: $paths->pages doesn't exist.\n", 3, true);
     exit(1);
 }
@@ -49,7 +49,7 @@ $sys::message("✔ Pages loaded.\n", 2, true);
 
 $sys::message("Loading languages...", 1);
 
-if(!is_dir($paths->languages)){
+if(!is_dir($paths->languages)) {
     $sys::message("Languages couldn't be loaded: $paths->languages doesn't exist.\n", 3, true);
     exit(1);
 }
@@ -60,18 +60,18 @@ $languages = array_map(function ($element) use ($build) {
 
 if(count($languages) <= 0) {
     $sys::message("$paths->languages is empty, ingoring...\n", 1, true);
-} else{
+} else {
     $sys::message("✔ Languages loaded.\n", 2, true);
 }
 
 $sys::message("Creating pages...\n", 1);
 
-foreach($pages as $currentPage){
+foreach($pages as $currentPage) {
     $pageName = $build::removeExtension($currentPage);
 
     $sys::message("\tCreating $pageName...", 1);
-    
-    foreach($languages as $lang){
+
+    foreach($languages as $lang) {
         $currentDir = $paths->dist . $lang . "/";
 
         if (!is_dir($currentDir)) {
@@ -80,7 +80,7 @@ foreach($pages as $currentPage){
                 $sys::message("Couldn't create $currentDir", 3, true);
                 exit(1);
             }
-        
+
         }
 
         $pageContents = $build::getPage(
@@ -95,7 +95,7 @@ foreach($pages as $currentPage){
         if($settings->pages->minify ?? false) {
             $pageContents = $build::minify($pageContents);
         }
-        
+
         $directory = dirname($currentDir . $pageName);
 
         if (!is_dir($directory)) {
@@ -105,10 +105,10 @@ foreach($pages as $currentPage){
         file_put_contents($currentDir . $pageName. ".html", $pageContents);
 
         $defaultLang = $settings->languages->default ?? null;
-        if($lang === $defaultLang){
+        if($lang === $defaultLang) {
             $extension = "html";
-            
-            if($settings->languages->redirectOnDefault ?? false){
+
+            if($settings->languages->redirectOnDefault ?? false) {
                 $pageContents = <<<EOD
                 <?php
                     \$lang = isset(\$_SERVER['HTTP_ACCEPT_LANGUAGE']) ? (preg_match('/^[a-zA-Z]{2,}$/', strtok(\$_SERVER['HTTP_ACCEPT_LANGUAGE'], ',')) ? strtok(\$_SERVER['HTTP_ACCEPT_LANGUAGE'], ',') : '$defaultLang') : '$defaultLang';
@@ -126,7 +126,7 @@ foreach($pages as $currentPage){
             if (!is_dir($directory)) {
                 mkdir($directory, 0755, true);
             }
-            
+
             file_put_contents($paths->dist . $pageName . '.' . $extension, $pageContents);
 
         }
@@ -136,7 +136,7 @@ foreach($pages as $currentPage){
     $sys::message("\t✔ $pageName.html created  \n", 2, true);
 }
 
-echo "\e[" . $pagesCount+1 . "A";
+echo "\e[" . $pagesCount + 1 . "A";
 $sys::message("✔ Pages created.", 2, true);
 echo "\e[$pagesCount" . "B\n";
 
@@ -147,7 +147,7 @@ $sys::rcopy($paths->public, $paths->dist);
 
 $sys::message("✔ Public directory copied.\n", 2, true);
 
-if(isset($arguments["seo"]) || $settings->seo->always ?? false){
+if(isset($arguments["seo"]) || $settings->seo->always ?? false) {
     $seoSettings = $settings->seo ?? null;
     $seoPath = (($seoSettings->buildInPublic ?? false) ? $paths->public : $paths->dist);
 
@@ -164,7 +164,7 @@ if(isset($arguments["seo"]) || $settings->seo->always ?? false){
 
             foreach ($availableExtensions as $ext) {
                 $actualPageName = $paths->pages . $build::removeExtension($pageName) . "." . $ext;
-                
+
                 if (file_exists($actualPageName)) {
                     break;
                 }
@@ -201,7 +201,7 @@ if(isset($arguments["seo"]) || $settings->seo->always ?? false){
         $seo->getRobots(
             array_map(function ($element) { return "/$element/"; }, $languages),
             $seoSettings->robots->disallow ?? [],
-            array_map(function ($element) use($seo) { return $element; }, $sitemaps)
+            array_map(function ($element) use ($seo) { return $element; }, $sitemaps)
         )
     );
 

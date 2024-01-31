@@ -2,4 +2,6 @@
 
 namespace PHPStatic\Exceptions;
 
-class UnavailablePort extends \Exception {}
+class UnavailablePort extends \Exception
+{
+}

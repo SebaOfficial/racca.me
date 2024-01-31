@@ -1,52 +1,56 @@
 {
-    "name": "seba/racca.me",
-    "type": "project",
-    "description": "Just my personal website",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "PHPStatic\\": "PHPStatic/Components/",
-            "PHPStatic\\Exceptions\\": "PHPStatic/Exceptions/",
-            "Seba\\": "src/components/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Sebastiano",
-            "email": "sebastiano@racca.me"
-        }
-    ],
-    "require": {
-        "php": ">=8",
-        "cboden/ratchet": "^0.4.4",
-        "erusev/parsedown": "^1.7",
-        "guzzlehttp/guzzle": "^7.7",
-        "seba/http": "^1.0",
-        "vlucas/phpdotenv": "^5.5",
-        "stripe/stripe-php": "^12.3"
-    },
-    "scripts": {
-        "build": [
-            "@php PHPStatic/build.php",
-            "mkdir -p dist/assets/previews/",
-            "@php src/previews.php"
-        ],
-        "build-on-changes": [
-            "Composer\\Config::disableProcessTimeout",
-            "@php PHPStatic/build-on-changes.php"
-        ],
-        "start": [
-            "Composer\\Config::disableProcessTimeout",
-            "@php PHPStatic/start.php"
-        ],
-        "docs": [
-            "Composer\\Config::disableProcessTimeout",
-            "@php PHPStatic/docs.php"
-        ],
-        "build-seo": "composer build -- --seo",
-        "post-root-package-install": "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-    },
-    "config": {
-        "optimize-autoloader": true
+  "name": "seba/racca.me",
+  "type": "project",
+  "description": "Just my personal website",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "PHPStatic\\": "PHPStatic/Components/",
+      "PHPStatic\\Exceptions\\": "PHPStatic/Exceptions/",
+      "Seba\\": "src/components/"
     }
+  },
+  "authors": [
+    {
+      "name": "Sebastiano",
+      "email": "sebastiano@racca.me"
+    }
+  ],
+  "require": {
+    "php": ">=8",
+    "cboden/ratchet": "^0.4.4",
+    "erusev/parsedown": "^1.7",
+    "guzzlehttp/guzzle": "^7.7",
+    "seba/http": "^1.0",
+    "vlucas/phpdotenv": "^5.5",
+    "stripe/stripe-php": "^12.3"
+  },
+  "scripts": {
+    "build": [
+      "@php PHPStatic/build.php",
+      "mkdir -p dist/assets/previews/",
+      "@php src/previews.php"
+    ],
+    "build-on-changes": [
+      "Composer\\Config::disableProcessTimeout",
+      "@php PHPStatic/build-on-changes.php"
+    ],
+    "start": [
+      "Composer\\Config::disableProcessTimeout",
+      "@php PHPStatic/start.php"
+    ],
+    "docs": [
+      "Composer\\Config::disableProcessTimeout",
+      "@php PHPStatic/docs.php"
+    ],
+    "build-seo": "composer build -- --seo",
+    "lint": "vendor/bin/php-cs-fixer fix .",
+    "post-root-package-install": "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.48"
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
 }

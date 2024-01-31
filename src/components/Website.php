@@ -2,10 +2,12 @@
 
 namespace Seba;
 
-class Website {
-    public static function getPaymentUrl(string $method, int $amount): string{
+class Website
+{
+    public static function getPaymentUrl(string $method, int $amount): string
+    {
 
-        if($method === "card"){
+        if($method === "card") {
             $stripe = new \Stripe\StripeClient($_ENV['STRIPE_SECRET_KEY']);
             $session = $stripe->checkout->sessions->create([
                 'success_url' => "https://" . $_SERVER['SERVER_NAME'],
@@ -25,27 +27,24 @@ class Website {
             ]);
 
             return $session->url;
-    
-        }
 
-        else if($method === "paypal"){
-            return $_ENV['PAYPAL_LINK'] . $amount/100 . "EUR";
-        }
-
-        else if($method === "satispay"){
+        } elseif($method === "paypal") {
+            return $_ENV['PAYPAL_LINK'] . $amount / 100 . "EUR";
+        } elseif($method === "satispay") {
             return $_ENV['SATISPAY_LINK'] . "?amount=$amount";
         }
     }
 
-    public function createPreviews(string $previewsPath, array $pages){
+    public function createPreviews(string $previewsPath, array $pages)
+    {
 
-        foreach($pages as $page){
+        foreach($pages as $page) {
             $pageName = $this->removeExtension($page);
 
             $image = new \mikehaertl\wkhtmlto\Image($this->settings->server_url . $page);
             $image->saveAs("$previewsPath$pageName.png");
         }
-        
+
     }
 
 }

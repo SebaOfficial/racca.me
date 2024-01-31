@@ -1,113 +1,111 @@
 {
-
-    "index": {
-        "doc": {
-            "title": "Sebastiano Racca - Sviluppatore",
-            "description": "Benvenuto nel sito del portfolio di Sebastiano Racca, che mette in mostra la mia passione per l'informatica e per il mondo. Esplora i miei progetti e contattami." 
-        },
-        "section": {
-            "title": "Seba",
-            "navigator": "Home"
-        },
-        "content": [
-            {
-            
-                "title": "Sede in Italia",
-                "description": "Sono uno studente italiano che prosegue la sua formazione e alla ricerca costante di conoscenza e cresita personale in vari campi."
-            },
-            {
-                "title": "Sviluppatore PHP",
-                "description": "Come sviluppatore web esperto, sono specializzato nella creazione di applicazioni web, siti web e API utilizzando vari linguaggi e tecnologie di programmazione. Inoltre, ho un forte background nello sviluppo di bot per Telegram e possiedo le competenze per progettare e implementare RPA (Robotic Process Automations) per semplificare attività e processi complessi."
-            },
-            {
-                "title": "Scout Entusiasta",
-                "description": "Essere uno scout è parte integrante della mia vita. Ha formato il mio carattere, mi ha insegnato preziose abilità di vita e mi ha permesso di contribuire alla mia comunità attraverso il lavoro di squadra, la leadership e le attività all'aperto."
-            },
-            {
-                "title": "Sostenitore dei Diritti Umani",
-                "description": "Sono profondamente interessato alle questioni sociali, in particolare a quelle legate all'ecologia, alla diversità etnica e alle minoranze politiche. Sostengo attivamente le iniziative che mirano a creare un mondo più inclusivo e sostenibile."
-            }
-        ]
+  "index": {
+    "doc": {
+      "title": "Sebastiano Racca - Sviluppatore",
+      "description": "Benvenuto nel sito del portfolio di Sebastiano Racca, che mette in mostra la mia passione per l'informatica e per il mondo. Esplora i miei progetti e contattami."
     },
-    "contacts": {
-        "doc": {
-            "title": "Contattami",
-            "description": "Entra in contatto con Sebastiano Racca e collegati direttamente per richiedere informazioni, collaborazioni o qualsiasi altra domanda. Contatta per discutere di progetti, collaborazioni o opportunità."  
-        },
-        "section": {
-            "title": "Contatti",
-            "navigator": "Contatti"
-        },
-        "content": {
-            "title": "Contattami",
-            "form": {
-                "subject": {
-                    "label": "Oggetto",
-                    "placeholder": "L'Oggetto"
-                },
-                "name": {
-                    "label": "Nome",
-                    "placeholder": "Il tuo Nome"
-                },
-                "message": {
-                    "label": "Messaggio",
-                    "placeholder": "Il messaggio che vuoi inviarmi"
-                },
-                "submit": "Invia"
-            }
-        }
+    "section": {
+      "title": "Seba",
+      "navigator": "Home"
     },
-    "projects": {
-        "doc": {
-            "title": "Progetti Open Source",
-            "description": "Esplora i progetti open source di Sebastiano Racca da GitHub, da librerie a progetti completi." 
-        },
-        "section": {
-            "title": "Progetti",
-            "navigator": "Progetti"
-        },
-        "content": {
-            "title": "Progetti Open Source da Github",
-            "star": {
-                "singular": "Stella",
-                "plural": "Stelle"
-            }
-        }
+    "content": [
+      {
+        "title": "Sede in Italia",
+        "description": "Sono uno studente italiano che prosegue la sua formazione e alla ricerca costante di conoscenza e cresita personale in vari campi."
+      },
+      {
+        "title": "Sviluppatore PHP",
+        "description": "Come sviluppatore web esperto, sono specializzato nella creazione di applicazioni web, siti web e API utilizzando vari linguaggi e tecnologie di programmazione. Inoltre, ho un forte background nello sviluppo di bot per Telegram e possiedo le competenze per progettare e implementare RPA (Robotic Process Automations) per semplificare attività e processi complessi."
+      },
+      {
+        "title": "Scout Entusiasta",
+        "description": "Essere uno scout è parte integrante della mia vita. Ha formato il mio carattere, mi ha insegnato preziose abilità di vita e mi ha permesso di contribuire alla mia comunità attraverso il lavoro di squadra, la leadership e le attività all'aperto."
+      },
+      {
+        "title": "Sostenitore dei Diritti Umani",
+        "description": "Sono profondamente interessato alle questioni sociali, in particolare a quelle legate all'ecologia, alla diversità etnica e alle minoranze politiche. Sostengo attivamente le iniziative che mirano a creare un mondo più inclusivo e sostenibile."
+      }
+    ]
+  },
+  "contacts": {
+    "doc": {
+      "title": "Contattami",
+      "description": "Entra in contatto con Sebastiano Racca e collegati direttamente per richiedere informazioni, collaborazioni o qualsiasi altra domanda. Contatta per discutere di progetti, collaborazioni o opportunità."
     },
-    "pay": {
-        "doc": {
-            "title": "Supporta L'Open Source: Dona o Assumi per Servizi",
-            "description": "Ogni contributo favoreggia il mio sviluppo di progetti open source. Esplora i modi per pagarmi o per effettuare una donazione." 
-        },
-        "section": {
-            "title": "Dona",
-            "navigator": "Dona &amp; Paga"
-        },
-        "content": {
-            "title": "Supportami",
-            "sub-title": "Ogni donazione è apprezzata <3",
-            "bmc": "Che stanchezza, perchè non mi compri un caffè?",
-            "form": {
-                "method": "Metodo di Pagamento:",
-                "ammount": "Ammontare:",
-                "submit": "Dona/Paga"
-            }
-        }
+    "section": {
+      "title": "Contatti",
+      "navigator": "Contatti"
     },
-    "404":{
-        "doc": {
-            "title": "Not Found",
-            "description": "Oops, pagina non trovata, torna su racca.me"  
+    "content": {
+      "title": "Contattami",
+      "form": {
+        "subject": {
+          "label": "Oggetto",
+          "placeholder": "L'Oggetto"
         },
-        "section": {
-            "title": "Not Found"
+        "name": {
+          "label": "Nome",
+          "placeholder": "Il tuo Nome"
         },
-        "content": {
-            "title": "La pagina non esiste",
-            "description": "Ma non ti preoccupare"
-        }
-    },
-    "blog": {
-        "title": "Blog di Seba"
+        "message": {
+          "label": "Messaggio",
+          "placeholder": "Il messaggio che vuoi inviarmi"
+        },
+        "submit": "Invia"
+      }
     }
+  },
+  "projects": {
+    "doc": {
+      "title": "Progetti Open Source",
+      "description": "Esplora i progetti open source di Sebastiano Racca da GitHub, da librerie a progetti completi."
+    },
+    "section": {
+      "title": "Progetti",
+      "navigator": "Progetti"
+    },
+    "content": {
+      "title": "Progetti Open Source da Github",
+      "star": {
+        "singular": "Stella",
+        "plural": "Stelle"
+      }
+    }
+  },
+  "pay": {
+    "doc": {
+      "title": "Supporta L'Open Source: Dona o Assumi per Servizi",
+      "description": "Ogni contributo favoreggia il mio sviluppo di progetti open source. Esplora i modi per pagarmi o per effettuare una donazione."
+    },
+    "section": {
+      "title": "Dona",
+      "navigator": "Dona &amp; Paga"
+    },
+    "content": {
+      "title": "Supportami",
+      "sub-title": "Ogni donazione è apprezzata <3",
+      "bmc": "Che stanchezza, perchè non mi compri un caffè?",
+      "form": {
+        "method": "Metodo di Pagamento:",
+        "ammount": "Ammontare:",
+        "submit": "Dona/Paga"
+      }
+    }
+  },
+  "404":{
+    "doc": {
+      "title": "Not Found",
+      "description": "Oops, pagina non trovata, torna su racca.me"
+    },
+    "section": {
+      "title": "Not Found"
+    },
+    "content": {
+      "title": "La pagina non esiste",
+      "description": "Ma non ti preoccupare"
+    }
+  },
+  "blog": {
+    "title": "Blog di Seba"
+  }
 }
