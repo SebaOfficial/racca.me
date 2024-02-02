@@ -70,9 +70,6 @@
     <script>
         let navLink;
 
-        window.history.replaceState({}, document.title, window.location.pathname.replace(/\.[^/.]+$/, ""));
-        window.history.replaceState({}, document.title, window.location.pathname.replace("index", ""));
-
         let pageName = window.location.href.split('/').pop();
 
         if (pageName === "") {

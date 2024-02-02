@@ -109,10 +109,11 @@ foreach($pages as $currentPage) {
             $extension = "html";
 
             if($settings->languages->redirectOnDefault ?? false) {
+                $redirect = "/\$lang/" . ($pageName == "index" ? "" : $pageName);
                 $pageContents = <<<EOD
                 <?php
                     \$lang = isset(\$_SERVER['HTTP_ACCEPT_LANGUAGE']) ? (preg_match('/^[a-zA-Z]{2,}$/', strtok(\$_SERVER['HTTP_ACCEPT_LANGUAGE'], ',')) ? strtok(\$_SERVER['HTTP_ACCEPT_LANGUAGE'], ',') : '$defaultLang') : '$defaultLang';
-                    header("Location: /\$lang/$pageName.html");
+                    header("Location: $redirect");
                     http_response_code(301);
                 ?>
                 $pageContents
