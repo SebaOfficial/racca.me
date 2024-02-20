@@ -115,8 +115,6 @@ foreach($pages as $currentPage) {
                     \$lang = isset(\$_SERVER['HTTP_ACCEPT_LANGUAGE']) ? (preg_match('/^[a-zA-Z]{2,}$/', strtok(\$_SERVER['HTTP_ACCEPT_LANGUAGE'], ',')) ? strtok(\$_SERVER['HTTP_ACCEPT_LANGUAGE'], ',') : '$defaultLang') : '$defaultLang';
                     header("Location: $redirect");
                     http_response_code(301);
-                ?>
-                $pageContents
                 EOD;
 
                 $extension = "php";
