@@ -44,7 +44,7 @@ foreach ($repos as $repo) {
 
 <div id="projects">
     <h2>#{{content.title}}</h2>
-    <div>
+    <div id="projects-list">
         <?= $repositories ?>
     </div>
 </div>
@@ -52,7 +52,7 @@ foreach ($repos as $repo) {
 <style>
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
-    #projects h2{
+    #projects h2 {
         text-align: center;
         margin-bottom: 20px;
     }
@@ -77,6 +77,24 @@ foreach ($repos as $repo) {
     #projects > div {
         height: 35em;
         overflow: auto;
+    }
+
+    #projects-list {
+        scrollbar-width: thin;
+        scrollbar-color: #999 #333;
+    }
+
+    #projects-list::-webkit-scrollbar-thumb {
+        background: #999;
+    }
+
+    #projects-list::-webkit-scrollbar-track {
+        background: #333;
+    }
+
+    #projects-list::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
     }
 
 </style>
