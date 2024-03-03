@@ -92,7 +92,7 @@
     }
 
     function extractPaymentMethod(link) {
-        const regex = /\/assets\/svgs\/(satispay|paypal|card|bmc)\.svg/;
+        const regex = /\/assets\/svgs\/(satispay|paypal|card)\.svg/;
         const match = link.match(regex);
 
         if (match) {
@@ -109,15 +109,8 @@
             let method = extractPaymentMethod(selectedPayment.src);
 
             try {
-                const response = await fetch("/pay-api.php", {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        method: method,
-                        amount: amount.innerHTML * 100
-                    })
+                const response = await fetch(`https://api.racca.me/pay/${method}/${amount.innerHTML * 100}`, {
+                    method: 'POST'
                 });
 
                 if (!response.ok) {
