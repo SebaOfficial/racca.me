@@ -1,17 +1,15 @@
-FROM php:8.1-fpm
+FROM node:21
 
-RUN apt-get update && apt-get install -y \
-  nginx \
-  libonig-dev \
-  libzip-dev
+WORKDIR /app
 
-COPY . /var/www/html
+COPY package*.json .
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer install
+RUN npm install
 
-COPY ./conf.d/nginx.conf /etc/nginx/sites-available/default
+COPY . .
 
-RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+RUN npm run build
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+
+CMD [ "npx", "concurrently", "node build", "npm run gen:previews -- http://localhost:3000" ]

@@ -1,0 +1,9 @@
+Dockerfile
+build/
+svelte-kit/
+node_modules/
+.editorconfig
+.prettierrc
+eslint.config.js
+README.md
+static/img/previews/

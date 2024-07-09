@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /it/
-Allow: /en/
-Sitemap: https://racca.me/sitemap-it.xml
-Sitemap: https://racca.me/sitemap-en.xml
