@@ -27,7 +27,6 @@
 	#app {
 		display: flex;
 		min-height: 100vh;
-		background-color: var(--color1);
 		transition:
 			color 0.5s,
 			background-color 0.5s;

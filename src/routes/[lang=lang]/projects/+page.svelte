@@ -79,4 +79,10 @@
 			color: #ffa500;
 		}
 	}
+
+  @media (min-width: 1024px) {
+    .wrapper {
+      margin: 0;
+    }
+  }
 </style>

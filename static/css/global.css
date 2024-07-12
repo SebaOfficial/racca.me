@@ -8,6 +8,10 @@
 	font-weight: normal;
 }
 
+body {
+  background-color: var(--color1);
+}
+
 h1 {
 	color: var(--color2);
 }
