@@ -1,0 +1,30 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        - BUILD_ENV="runtime"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    environment:
+      - NODE_ENV=production
+      - BUILD_ENV=runtime
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    container_name: redis
+    command: [ "redis-server", "--requirepass", "tj9Z47LRLRzbShNQxFnpPvd5bLpzqZky" ]
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
