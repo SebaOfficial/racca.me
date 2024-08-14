@@ -8,9 +8,9 @@ import fs from 'fs';
 
 const captureScreenshot = async (url: string, outputPath: string) => {
 	const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  });
+		headless: true,
+		args: ['--no-sandbox', '--disable-setuid-sandbox']
+	});
 	const page = await browser.newPage();
 	await page.goto(url, { waitUntil: 'networkidle2' });
 	await page.setViewport({ width: 1920, height: 1080 });

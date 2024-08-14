@@ -80,9 +80,9 @@
 		}
 	}
 
-  @media (min-width: 1024px) {
-    .wrapper {
-      margin: 0;
-    }
-  }
+	@media (min-width: 1024px) {
+		.wrapper {
+			margin: 0;
+		}
+	}
 </style>

@@ -2,13 +2,14 @@
 	import { dev } from '$app/environment';
 	import axios from 'axios';
 	import { PUBLIC_BMC_ID, PUBLIC_API_URL } from '$env/static/public';
+	import { page } from '$app/stores';
 
 	export let data;
 
 	const paymentMethods = ['Card', 'PayPal', 'SatisPay'];
 
 	let paymentMethod = 'Card';
-	let amount = '10.00';
+	let amount = $page.url.searchParams.get('amount') || '10.00';
 	let amountError = false;
 
 	const submit = async (e: Event) => {
