@@ -11,10 +11,12 @@ git clone https://github.com/SebaOfficial/racca.me
 2. Add your `.env`
 
 ```bash
-test -f ./.env || cp ./.env.example ./.env
+cp ./.env.example ./.env
 ```
 
-And edit it with your information 3. Build and start the container
+And edit it with your information
+
+3. Build and start the container
 
 ```bash
 docker-compose up -d --build
