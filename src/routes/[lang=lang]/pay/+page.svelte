@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
+	import { dev, browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 	import axios from 'axios';
 	import { PUBLIC_BMC_ID, PUBLIC_API_URL } from '$env/static/public';
 	import { page } from '$app/stores';
@@ -10,6 +11,16 @@
 
 	let paymentMethod = 'Card';
 	let amount = $page.url.searchParams.get('amount') || '10.00';
+
+	let amountParam: string | null;
+	if (browser && (amountParam = $page.url.searchParams.get('amount'))) {
+		amount = amountParam;
+
+		const searchParams = new URLSearchParams($page.url.searchParams);
+		searchParams.delete('amount');
+		goto(`${$page.url.pathname}?${searchParams.toString()}`, { replaceState: true });
+	}
+  
 	let amountError = false;
 
 	const submit = async (e: Event) => {
