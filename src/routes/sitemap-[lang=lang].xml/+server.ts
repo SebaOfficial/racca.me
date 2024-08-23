@@ -30,7 +30,7 @@ export const GET = async ({ params, url }) => {
       <url>
         <loc>${host}/${params.lang}/pay</loc>
         <lastmod>2024-08-23</lastmod>
-        <priority>0.5</priority>
+        <priority>0.2</priority>
       </url>
       <url>
         <loc>${host}/${params.lang}/projects</loc>
