@@ -19,7 +19,7 @@
 				</h3>
 				<p itemprop="description">{repo.description}</p>
 				<span class="star">
-					<span class="fa fa-star"></span>
+					<span>&#9733;</span>
 					{repo.stargazers_count}
 					{repo.stargazers_count == 1
 						? data.page.contents.star.singular
@@ -31,8 +31,6 @@
 </div>
 
 <style lang="scss">
-	@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-
 	.wrapper {
 		h2 {
 			text-align: center;
@@ -53,6 +51,11 @@
 
 		.star {
 			color: #6b4500;
+
+      span {
+        font-size: large;
+        font-weight: bold;
+      }
 		}
 
 		.list {
