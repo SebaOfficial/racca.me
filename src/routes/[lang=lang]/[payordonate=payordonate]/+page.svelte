@@ -20,7 +20,7 @@
 		searchParams.delete('amount');
 		goto(`${$page.url.pathname}?${searchParams.toString()}`, { replaceState: true });
 	}
-  
+
 	let amountError = false;
 
 	const submit = async (e: Event) => {
@@ -48,7 +48,9 @@
 <div class="wrapper">
 	<div>
 		<h2>{data.page.contents.title}</h2>
-		<p>{data.page.contents.subTitle}</p>
+		{#if data.page.contents.subTitle}
+			<p>{data.page.contents.subTitle}</p>
+		{/if}
 	</div>
 
 	<form on:submit={submit}>
@@ -98,7 +100,7 @@
 	</form>
 </div>
 
-{#if !dev}
+{#if !dev && data.page.contents.bmc}
 	<script
 		data-name="BMC-Widget"
 		data-cfasync="false"

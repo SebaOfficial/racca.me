@@ -19,8 +19,8 @@ const en: Config = {
 		},
 		{
 			title: 'Donation Page',
-			href: '/en/pay',
-			content: 'Donate &amp; Pay'
+			href: '/en/donate',
+			content: 'Donate'
 		},
 		{
 			title: "Seba's Blog",
@@ -110,6 +110,24 @@ const en: Config = {
 			}
 		},
 		pay: {
+			title: 'Payment',
+			seo: {
+				title: 'Payments',
+				description:
+					'Pay Sebastiano Racca for his work.'
+			},
+			contents: {
+				title: 'Payment',
+				subTitle: null,
+				bmc: null,
+				form: {
+					method: 'Payment Method:',
+					amount: 'Amount:',
+					submit: 'Pay'
+				}
+			}
+		},
+    donate: {
 			title: 'Donate',
 			seo: {
 				title: 'Donations',
@@ -126,7 +144,7 @@ const en: Config = {
 				form: {
 					method: 'Payment Method:',
 					amount: 'Amount:',
-					submit: 'Donate/Pay'
+					submit: 'Donate'
 				}
 			}
 		},

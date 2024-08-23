@@ -23,8 +23,13 @@ export const GET = async ({ params, url }) => {
         <priority>0.6</priority>
       </url>
       <url>
+        <loc>${host}/${params.lang}/donate</loc>
+        <lastmod>2024-08-23</lastmod>
+        <priority>0.6</priority>
+      </url>
+      <url>
         <loc>${host}/${params.lang}/pay</loc>
-        <lastmod>2023-09-18</lastmod>
+        <lastmod>2024-08-23</lastmod>
         <priority>0.5</priority>
       </url>
       <url>
