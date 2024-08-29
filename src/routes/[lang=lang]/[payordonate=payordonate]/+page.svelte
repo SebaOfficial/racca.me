@@ -30,10 +30,7 @@
 				baseURL: PUBLIC_API_URL
 			});
 
-			const res = await client.post(
-				`/pay/${paymentMethod.toLowerCase()}/${amount.replace('.', '')}`
-			);
-			window.open(res.data.url, '_blank', 'noopener,noreferrer');
+      window.open(`${PUBLIC_API_URL}/pay/${paymentMethod.toLowerCase()}/${amount.replace('.', '')}`, '_blank', 'noopener,noreferrer');
 		}
 	};
 
