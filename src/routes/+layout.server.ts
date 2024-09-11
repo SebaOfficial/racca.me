@@ -16,7 +16,7 @@ export const load = ({ request, url }) => {
 		}
 
 		if (!paths.includes(lang)) {
-			throw redirect(301, `/${lang}${url.pathname}${url.search}`);
+			throw redirect(301, `/${lang}${url.pathname == '/' ? '' : url.pathname}${url.search}`);
 		}
 	}
 };
