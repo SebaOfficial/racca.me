@@ -113,8 +113,7 @@ const en: Config = {
 			title: 'Payment',
 			seo: {
 				title: 'Payments',
-				description:
-					'Pay Sebastiano Racca for his work.'
+				description: 'Pay Sebastiano Racca for his work.'
 			},
 			contents: {
 				title: 'Payment',
@@ -127,7 +126,7 @@ const en: Config = {
 				}
 			}
 		},
-    donate: {
+		donate: {
 			title: 'Donate',
 			seo: {
 				title: 'Donations',

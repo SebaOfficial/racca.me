@@ -30,7 +30,11 @@
 				baseURL: PUBLIC_API_URL
 			});
 
-      window.open(`${PUBLIC_API_URL}/pay/${paymentMethod.toLowerCase()}/${amount.replace('.', '')}`, '_blank', 'noopener,noreferrer');
+			window.open(
+				`${PUBLIC_API_URL}/pay/${paymentMethod.toLowerCase()}/${amount.replace('.', '')}`,
+				'_blank',
+				'noopener,noreferrer'
+			);
 		}
 	};
 

@@ -52,10 +52,10 @@
 		.star {
 			color: #6b4500;
 
-      span {
-        font-size: large;
-        font-weight: bold;
-      }
+			span {
+				font-size: large;
+				font-weight: bold;
+			}
 		}
 
 		.list {
