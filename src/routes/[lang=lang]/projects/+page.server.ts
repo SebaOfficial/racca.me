@@ -30,7 +30,7 @@ const fetchRepos = async (url: URL) => {
 };
 
 const getCachedRepos = async (url: URL): Promise<GitHubRepository[]> => {
-	const key = `${url.host}-`;
+	const key = 'repos';
 
 	if (await redis.exists(key)) {
 		return JSON.parse((await redis.get(key)) ?? '[]') as GitHubRepository[];

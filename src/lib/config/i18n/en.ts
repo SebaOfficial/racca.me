@@ -104,7 +104,7 @@ const en: Config = {
 				}
 			},
 			seo: {
-				title: 'Open Source Projects',
+				title: 'Popular Open Source Projects',
 				description:
 					"Explore Sebastiano Racca's open source projects from GitHub, ranging libraries to full projects."
 			}

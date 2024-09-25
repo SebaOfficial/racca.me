@@ -97,7 +97,7 @@ const it: Config = {
 		projects: {
 			title: 'Progetti',
 			seo: {
-				title: 'Progetti Open Source',
+				title: 'Progetti Open Source Popolari',
 				description:
 					'Esplora i progetti open source di Sebastiano Racca da GitHub, da librerie a progetti completi.'
 			},
