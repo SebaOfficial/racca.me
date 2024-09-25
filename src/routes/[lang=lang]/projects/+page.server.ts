@@ -23,7 +23,10 @@ const fetchRepos = async (url: URL) => {
 
 	let repos: GitHubRepository[] = responses.map((response) => response.data);
 
-	return repos.flat().sort((a, b) => b.stargazers_count - a.stargazers_count);
+	return repos
+		.flat()
+		.filter((repo) => repo.stargazers_count > 0)
+		.sort((a, b) => b.stargazers_count - a.stargazers_count);
 };
 
 const getCachedRepos = async (url: URL): Promise<GitHubRepository[]> => {
