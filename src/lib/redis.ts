@@ -6,7 +6,7 @@ const redis = createClient({
 	password: REDIS_PASSWORD
 });
 
-await redis.connect().catch((err) => {
+redis.connect().catch((err) => {
 	console.error('Failed to connect to Redis', err);
 });
 
