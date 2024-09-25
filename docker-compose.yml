@@ -2,15 +2,12 @@ services:
   app:
     build:
       context: .
-      args:
-        - BUILD_ENV="runtime"
     ports:
       - '3000:3000'
     depends_on:
       - redis
     environment:
       - NODE_ENV=production
-      - BUILD_ENV=runtime
     networks:
       - app-network
     restart: unless-stopped
