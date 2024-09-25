@@ -1,3 +1,6 @@
+import { getCurrentDate } from '$lib/helpers.js';
+import redis from '$lib/redis';
+
 export const GET = async ({ params, url }) => {
 	const host = `${url.protocol}//${url.host}`;
 
@@ -34,7 +37,7 @@ export const GET = async ({ params, url }) => {
       </url>
       <url>
         <loc>${host}/${params.lang}/projects</loc>
-        <lastmod>2023-09-18</lastmod>
+        <lastmod>${(await redis.get('repos-last-changed')) || getCurrentDate()}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
       </url>

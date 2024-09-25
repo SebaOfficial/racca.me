@@ -2,6 +2,7 @@ import { GITHUB_TOKEN, GITHUB_PROJECTS_SOURCES, PROJECTS_CACHE } from '$env/stat
 import type { GitHubRepository } from '$lib/types/GitHubRepository';
 import axios, { type AxiosResponse } from 'axios';
 import redis from '$lib/redis';
+import { getCurrentDate } from '$lib/helpers.js';
 
 const fetchRepos = async (url: URL) => {
 	const sources = GITHUB_PROJECTS_SOURCES.split(' ');
@@ -41,6 +42,8 @@ const getCachedRepos = async (url: URL): Promise<GitHubRepository[]> => {
 	redis.set(key, JSON.stringify(repos), {
 		EX: +PROJECTS_CACHE
 	});
+
+	redis.set('repos-last-changed', getCurrentDate());
 
 	return repos;
 };
