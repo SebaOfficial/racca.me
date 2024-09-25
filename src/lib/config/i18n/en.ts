@@ -97,14 +97,14 @@ const en: Config = {
 		projects: {
 			title: 'Projects',
 			contents: {
-				title: 'Open source projects from GitHub',
+				title: 'Popular open-source projects from GitHub',
 				star: {
 					singular: 'Star',
 					plural: 'Stars'
 				}
 			},
 			seo: {
-				title: 'Popular Open Source Projects',
+				title: 'Open Source Projects',
 				description:
 					"Explore Sebastiano Racca's open source projects from GitHub, ranging libraries to full projects."
 			}

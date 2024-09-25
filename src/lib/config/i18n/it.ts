@@ -97,12 +97,12 @@ const it: Config = {
 		projects: {
 			title: 'Progetti',
 			seo: {
-				title: 'Progetti Open Source Popolari',
+				title: 'Progetti Open Source',
 				description:
 					'Esplora i progetti open source di Sebastiano Racca da GitHub, da librerie a progetti completi.'
 			},
 			contents: {
-				title: 'Progetti Open Source da Github',
+				title: 'Progetti open-source popolari da GitHub',
 				star: {
 					singular: 'Stella',
 					plural: 'Stelle'
