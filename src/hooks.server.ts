@@ -2,28 +2,37 @@ import { redirect } from '@sveltejs/kit';
 import { match as matchLanguage, AVAILABLE_LANGUAGES } from './params/lang';
 
 const DEFAULT_LANGUAGE = AVAILABLE_LANGUAGES[0];
+const NO_LANG_ROUTES = ['/robots.txt', AVAILABLE_LANGUAGES.map((lang) => `/sitemap-${lang}.xml`)];
+
+const isNoLangRoute = (pathname: string) => NO_LANG_ROUTES.includes(pathname);
+
+const getPreferredLanguage = (acceptLanguageHeader: string | null) => {
+	if (!acceptLanguageHeader) return DEFAULT_LANGUAGE;
+	const preferredLang = acceptLanguageHeader.split(',')[0];
+	return /^[a-zA-Z]{2,}$/.test(preferredLang) && matchLanguage(preferredLang)
+		? preferredLang
+		: DEFAULT_LANGUAGE;
+};
+
+const getRedirectUrl = (lang: string, pathname: string, search: string) =>
+	`/${lang}${pathname === '/' ? '' : pathname}${search}`;
 
 export const handle = async ({ event, resolve }) => {
-	const paths = event.url.pathname.split('/').filter(Boolean);
+	const { pathname, search } = event.url;
+	const paths = pathname.split('/').filter(Boolean);
 
-	// Redirect user if they haven't specified a language
-	if (!matchLanguage(paths[0])) {
-		let lang = DEFAULT_LANGUAGE;
+	if (isNoLangRoute(pathname)) {
+		return await resolve(event);
+	}
 
-		const acceptLanguage = event.request.headers.get('accept-language');
-		if (acceptLanguage) {
-			const languageCode = acceptLanguage.split(',')[0];
+	// Redirect to preferred language if no language prefix is specified
+	const specifiedLanguage = paths[0];
+	if (!matchLanguage(specifiedLanguage)) {
+		const preferredLanguage = getPreferredLanguage(event.request.headers.get('accept-language'));
 
-			if (/^[a-zA-Z]{2,}$/.test(languageCode) && matchLanguage(languageCode)) {
-				lang = languageCode;
-			}
-		}
-
-		if (!paths.includes(lang)) {
-			throw redirect(
-				301,
-				`/${lang}${event.url.pathname == '/' ? '' : event.url.pathname}${event.url.search}`
-			);
+		// Redirect only if the preferred language is not in the current URL path
+		if (paths[0] !== preferredLanguage) {
+			throw redirect(301, getRedirectUrl(preferredLanguage, pathname, search));
 		}
 	}
 
