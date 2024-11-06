@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import { match as matchLanguage, AVAILABLE_LANGUAGES } from './params/lang';
+import { handleRequest } from '$lib/cliRequest';
 
 const DEFAULT_LANGUAGE = AVAILABLE_LANGUAGES[0];
 const NO_LANG_ROUTES = ['/robots.txt', AVAILABLE_LANGUAGES.map((lang) => `/sitemap-${lang}.xml`)];
@@ -20,6 +21,11 @@ const getRedirectUrl = (lang: string, pathname: string, search: string) =>
 export const handle = async ({ event, resolve }) => {
 	const { pathname, search } = event.url;
 	const paths = pathname.split('/').filter(Boolean);
+
+	const userAgent = event.request.headers.get('user-agent');
+	if (userAgent && userAgent.includes('curl')) {
+		return handleRequest();
+	}
 
 	if (isNoLangRoute(pathname)) {
 		return await resolve(event);
