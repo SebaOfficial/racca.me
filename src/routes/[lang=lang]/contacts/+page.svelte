@@ -28,7 +28,7 @@
 						itemprop={formData.itemprop}
 						class="feedback-input"
 						bind:value={formValues.message}
-					/>
+					></textarea>
 				{:else}
 					<input
 						placeholder={formData.placeholder}

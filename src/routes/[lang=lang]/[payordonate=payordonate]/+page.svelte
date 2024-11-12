@@ -89,7 +89,7 @@
 					bind:textContent={amount}
 					class:amountError
 					contenteditable
-				/>
+				></span>
 			</p>
 		</div>
 
