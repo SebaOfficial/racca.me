@@ -43,7 +43,7 @@
 	"dependencies": {
 		"axios": "^1.7.7",
 		"colors": "^1.4.0",
-		"dotenv": "^16.4.5",
+		"dotenv": "^16.4.7",
 		"puppeteer": "^22.12.1",
 		"redis": "^4.7.0",
 		"sass": "^1.81.0",
