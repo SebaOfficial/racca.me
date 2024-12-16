@@ -2,7 +2,6 @@
 	import { dev } from '$app/environment';
 	import Header from '$lib/components/Header.svelte';
 	import SEO from '$lib/components/SEO.svelte';
-	import { PUBLIC_API_URL } from '$env/static/public';
 
 	export let data;
 </script>
@@ -20,8 +19,8 @@
 </div>
 
 {#if !dev}
-	<script src="{PUBLIC_API_URL}/newsletter.js" defer async></script>
 	<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+	<script async src="https://scripts.simpleanalyticscdn.com/auto-events.js"></script>
 {/if}
 
 <style lang="scss">
