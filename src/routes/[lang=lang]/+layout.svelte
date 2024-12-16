@@ -21,6 +21,7 @@
 
 {#if !dev}
 	<script src="{PUBLIC_API_URL}/newsletter.js" defer async></script>
+	<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 {/if}
 
 <style lang="scss">
