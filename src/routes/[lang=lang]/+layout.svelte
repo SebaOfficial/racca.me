@@ -76,9 +76,5 @@
 				justify-content: center;
 			}
 		}
-
-		.banner {
-			display: block;
-		}
 	}
 </style>
