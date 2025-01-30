@@ -5,17 +5,6 @@
 	import { onMount } from 'svelte';
 
 	export let data;
-
-	let showBanner: boolean = false;
-
-	onMount(() => {
-		showBanner = Boolean(+(localStorage.getItem('show.banner') || '1'));
-	});
-
-	const closeBanner = () => {
-		showBanner = false;
-		localStorage.setItem('show.banner', '0');
-	};
 </script>
 
 <SEO seo={data.page.seo} />
@@ -33,13 +22,6 @@
 {#if !dev}
 	<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 	<script async src="https://scripts.simpleanalyticscdn.com/auto-events.js"></script>
-{/if}
-
-{#if showBanner}
-	<div class="banner">
-		Check this out: <code>curl https://racca.me</code>, something cool happens! 🎉
-		<button class="close-btn" onclick={closeBanner} title="Close">&times;</button>
-	</div>
 {/if}
 
 <style lang="scss">
@@ -81,29 +63,6 @@
 				max-width: 500px;
 				margin: 0 30px 30px 30px;
 			}
-		}
-	}
-
-	.banner {
-		display: none;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		background-color: #0078d7;
-		color: #fff;
-		text-align: center;
-		padding: 10px 0;
-		font-size: 16px;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-		z-index: 1000;
-
-		button {
-			background-color: inherit;
-			border: none;
-			color: inherit;
-			font-size: x-large;
-			cursor: pointer;
 		}
 	}
 
