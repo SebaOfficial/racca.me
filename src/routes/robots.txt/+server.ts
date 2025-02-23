@@ -1,5 +1,4 @@
 export const GET = ({ url }) => {
-	console.log(url);
 	return new Response(`User-agent: *
 Allow: /it/
 Allow: /en/

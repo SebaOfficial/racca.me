@@ -3,7 +3,10 @@ import { match as matchLanguage, AVAILABLE_LANGUAGES } from './params/lang';
 import { handleRequest } from '$lib/cliRequest';
 
 const DEFAULT_LANGUAGE = AVAILABLE_LANGUAGES[0];
-const NO_LANG_ROUTES = ['/robots.txt', AVAILABLE_LANGUAGES.map((lang) => `/sitemap-${lang}.xml`)];
+const NO_LANG_ROUTES = [
+	'/robots.txt',
+	...AVAILABLE_LANGUAGES.map((lang) => `/sitemap-${lang}.xml`)
+];
 
 const isNoLangRoute = (pathname: string) => NO_LANG_ROUTES.includes(pathname);
 
