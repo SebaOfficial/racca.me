@@ -1,0 +1,12 @@
+/node_modules
+/.git
+/.gitignore
+/README.md
+/build
+.env
+.editorconfig
+.npmrc
+.prettierignore
+.pritterrc
+Dockerfile
+eslint.config.js
