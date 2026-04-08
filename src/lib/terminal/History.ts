@@ -1,9 +1,9 @@
-import { PUBLIC_HISTORY_LIMIT } from '$env/static/public';
+import { env } from '$env/dynamic/public';
 import { getLogger } from '@logtape/logtape';
 
 export default class History {
 	private history: string[] = [];
-	private HISTORY_LIMIT: number = Number(PUBLIC_HISTORY_LIMIT);
+	private HISTORY_LIMIT: number = Number(env.PUBLIC_HISTORY_LIMIT ?? 100);
 	private index: number = 0;
 	private logger = getLogger(['history']);
 
