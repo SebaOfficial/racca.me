@@ -1,0 +1,67 @@
+{
+	"name": "racca.me",
+	"private": true,
+	"author": {
+		"name": "Sebastiano Racca",
+		"url": "https://racca.me",
+		"email": "sebastiano@racca.me"
+	},
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"predev": "docker compose up -d --wait --wait-timeout 120",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@octokit/rest": "^22.0.1",
+		"@sveltejs/adapter-static": "^4.0.0",
+		"@sveltejs/enhanced-img": "^1.0.0",
+		"@sveltejs/kit": "^3.1.0",
+		"@sveltejs/vite-plugin-svelte": "^7.3.1",
+		"@tailwindcss/forms": "^0.5.11",
+		"@tailwindcss/typography": "^0.5.20",
+		"@tailwindcss/vite": "^4.3.3",
+		"@types/node": "^24.19.2",
+		"@types/to-ico": "^1.1.3",
+		"eslint": "^10.13.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.23.1",
+		"flowbite-svelte-icons": "^3.1.0",
+		"globals": "^17.13.0",
+		"mdsvex": "^0.12.8",
+		"parse-multipart-data": "^1.5.0",
+		"prettier": "^3.9.10",
+		"prettier-plugin-svelte": "^4.1.1",
+		"prettier-plugin-tailwindcss": "^0.8.1",
+		"rehype-slug": "^6.0.0",
+		"sharp": "^0.35.5",
+		"svelte": "^5.57.2",
+		"svelte-check": "^4.7.7",
+		"svelte-seo": "^2.0.0",
+		"tailwindcss": "^4.3.3",
+		"to-ico": "^1.1.5",
+		"tslog": "^5.4.0",
+		"tsx": "^4.23.15",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.71.2",
+		"vite": "^8.3.4",
+		"zod": "^4.6.7"
+	},
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
+	},
+	"dependencies": {
+		"@zenfs/core": "^2.7.7",
+		"@zenfs/dom": "^1.2.14",
+		"svelte-scrolling": "^1.5.1"
+	}
+}

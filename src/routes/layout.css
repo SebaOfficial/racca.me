@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+/* Theme */
+@theme {
+	--color-background: #121314;
+	--color-on-background: #e3e2e3;
+}
+
+body {
+	@apply max-w-full overflow-x-clip bg-background leading-normal text-on-background;
+}
+
+h2:not(.no-style) {
+	@apply text-3xl font-semibold;
+}
+
+h3:not(.no-style) {
+	@apply text-xl font-semibold;
+}
+
+h4:not(.no-style) {
+	@apply font-semibold;
+}
+
+.terminal {
+	@apply font-mono;
+
+	.secondary {
+		@apply text-blue-500;
+	}
+
+	.success {
+		@apply text-green-500;
+	}
+
+	.error {
+		@apply text-red-500;
+	}
+}
