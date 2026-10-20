@@ -62,7 +62,7 @@
 </script>
 
 <div
-	class="group relative"
+	class="group relative overflow-hidden"
 	onmouseenter={() => (isHovered = true)}
 	onmouseleave={() => (isHovered = false)}
 	onfocusin={() => (isFocused = true)}

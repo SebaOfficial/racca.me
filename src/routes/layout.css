@@ -24,6 +24,10 @@ h4:not(.no-style) {
 	@apply font-semibold;
 }
 
+a:not(.no-style) {
+	@apply relative cursor-pointer after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full motion-reduce:after:transition-none;
+}
+
 .terminal {
 	@apply font-mono;
 
