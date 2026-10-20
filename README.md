@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://racca.me"><img src="https://img.shields.io/badge/live-racca.me-2563eb?style=for-the-badge" alt="Live website"></a>
   <a href="https://github.com/SebaOfficial/racca.me/actions/workflows/build.yml"><img src="https://img.shields.io/github/actions/workflow/status/SebaOfficial/racca.me/build.yml?branch=main&style=for-the-badge&label=build" alt="Build status"></a>
-  <a href="https://github.com/SebaOfficial/racca.me/blob/main/README.md"><img src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-64748b?style=for-the-badge" alt="CC BY-NC-SA 4.0 license"></a>
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-64748b?style=for-the-badge" alt="CC BY-NC-SA 4.0 license"></a>
 </p>
 
 # racca.me
