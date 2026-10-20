@@ -1,4 +1,4 @@
-import { EnvelopeSolid, GithubSolid, LinkedinSolid, LockSolid } from 'flowbite-svelte-icons';
+import { EnvelopeSolid, GithubSolid, LinkedinSolid } from 'flowbite-svelte-icons';
 
 const s = {
 	openExternalLink: (descriptor: string) => `${descriptor} (opens in a new tab)`,
@@ -34,11 +34,6 @@ const s = {
 					name: 'Email',
 					link: 'mailto:sebastiano@racca.me',
 					icon: EnvelopeSolid,
-				},
-				{
-					name: 'GPG Key',
-					link: 'https://gpg.racca.me',
-					icon: LockSolid,
 				},
 			],
 		},
