@@ -111,7 +111,7 @@
 	bind:this={terminalElement}
 	id="terminal"
 	{onclick}
-	class="terminal box-border h-70 w-full max-w-3xl min-w-0 overflow-x-hidden overflow-y-auto rounded-xl border border-zinc-800 bg-zinc-950 font-mono text-sm text-zinc-300 shadow-2xl md:mb-4 lg:mb-8"
+	class="terminal mb-8 box-border h-70 w-full max-w-3xl min-w-0 overflow-x-hidden overflow-y-auto rounded-xl border border-zinc-800 bg-zinc-950 font-mono text-sm text-zinc-300 shadow-2xl"
 >
 	<!-- Header -->
 	<div
