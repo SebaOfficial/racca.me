@@ -4,6 +4,7 @@ import path from 'node:path';
 import type { BlogPost, BlogProject } from '#lib/blog.d.ts';
 import screenshot from '#lib/server/screenshot.ts';
 import rehypeSlug from 'rehype-slug';
+import rehypeExternalLinks from 'rehype-external-links';
 
 const src = path.join('src', 'lib', 'blog');
 const projectsDir = path.join(src, 'projects');
@@ -12,13 +13,23 @@ const postsDir = path.join(src, 'posts');
 const parseMd = async (md: string) => {
 	const res = await compile(md, {
 		smartypants: true,
-		rehypePlugins: [rehypeSlug],
 		highlight: {
 			optimise: false,
 		},
+		rehypePlugins: [
+			rehypeSlug,
+			[
+				rehypeExternalLinks,
+				{
+					target: '_blank',
+					rel: ['noopener', 'noreferrer'],
+					protocols: ['http', 'https', 'mailto'],
+				},
+			],
+		],
 	});
 
-	if (!res) throw new Error("Coudn't compile markdown");
+	if (!res) throw new Error("Couldn't compile markdown");
 
 	const data = res.data as Record<string, Record<string, unknown>>;
 	const html = res.code.replace(/^<script context="module">[\s\S]*?<\/script>\s*/, '');
