@@ -23,7 +23,9 @@
 
 <div class="flex items-baseline gap-1">
 	<span class="shrink-0 text-emerald-400">
-		{user}@{hostname}
+		<!-- Disable Cloudflare's email obfuscation -->
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+		{@html '<!--email_off-->'}{user}@{hostname}{@html '<!--/email_off-->'}
 	</span>
 
 	<span class="shrink-0">:</span>
