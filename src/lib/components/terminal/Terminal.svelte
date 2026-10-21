@@ -123,7 +123,7 @@
 			<span class="h-3 w-3 rounded-full bg-green-500"></span>
 		</div>
 
-		<span class="text-xs text-zinc-500">{s.terminal.title}</span>
+		<span class="text-xs text-zinc-300">{s.terminal.title}</span>
 
 		<div class="w-10"></div>
 	</div>
