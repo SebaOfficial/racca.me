@@ -13,6 +13,9 @@ const parseMd = async (md: string) => {
 	const res = await compile(md, {
 		smartypants: true,
 		rehypePlugins: [rehypeSlug],
+		highlight: {
+			optimise: false,
+		},
 	});
 
 	if (!res) throw new Error("Coudn't compile markdown");
