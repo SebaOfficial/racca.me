@@ -128,6 +128,17 @@ const s = {
 			},
 		},
 	},
+	error: {
+		404: {
+			title: 'Page not found',
+			description: "The page you're looking for doesn't exist or may have moved.",
+		},
+		default: {
+			title: 'Something went wrong',
+			description: 'This page could not be loaded right now.',
+		},
+		cta: 'Return to the homepage',
+	},
 } as const;
 
 export default s;
