@@ -62,10 +62,10 @@
 						class="no-style group flex items-center py-3"
 					>
 						<span
-							class="bar h-px w-10 transition-all group-hover:w-16 group-hover:bg-on-background {activeSection ===
+							class="bar h-px transition-all group-hover:w-16 group-hover:bg-on-background {activeSection ===
 							nav
 								? 'w-16 bg-on-background'
-								: 'bg-on-background/50'}"
+								: 'w-10 bg-on-background/50'}"
 						></span>
 						<span
 							class="text ml-4 transition-colors group-hover:text-on-background {activeSection ===
