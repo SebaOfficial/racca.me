@@ -2,7 +2,8 @@ import { EnvelopeSolid, GithubSolid, LinkedinSolid } from 'flowbite-svelte-icons
 
 const s = {
 	openExternalLink: (descriptor: string) => `${descriptor} (opens in a new tab)`,
-	learnMore: 'Learn More',
+	learnMore: (type: 'post' | 'project') =>
+		type === 'project' ? 'Read project article' : 'Read article',
 	skipToContent: 'Skip to content',
 	header: {
 		brand: 'Seba',

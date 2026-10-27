@@ -63,7 +63,7 @@
 								})}
 								class="group/link text-sm leading-normal"
 							>
-								{s.learnMore}
+								{s.learnMore(article.type === 'project' ? 'project' : 'post')}
 								<ArrowRightOutline
 									aria-hidden="true"
 									class="inline h-4 w-4 shrink-0 transition-all group-hover/link:translate-x-1 motion-reduce:transition-none"

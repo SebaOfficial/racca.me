@@ -46,6 +46,7 @@
 			autocomplete="off"
 			autocapitalize="off"
 			spellcheck="false"
+			tabindex="-1"
 			class="min-w-0 flex-1 border-0 bg-transparent p-0 text-white outline-none focus-visible:ring-0"
 		/>
 	{/if}

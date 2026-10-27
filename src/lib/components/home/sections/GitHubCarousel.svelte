@@ -85,7 +85,13 @@
 							class="flex min-h-48 w-80 shrink-0 flex-col
 								rounded-lg border border-gray-200 p-4"
 						>
-							<a href={project.url} rel="external" target="_blank" class="block">
+							<a
+								href={project.url}
+								rel="external"
+								target="_blank"
+								class="w-fit"
+								aria-label={project.fullName}
+							>
 								<h4 itemprop="name" class="line-clamp-2">{project.fullName}</h4>
 							</a>
 
@@ -129,8 +135,7 @@
 
 	<div
 		class="pointer-events-none absolute inset-y-0 right-0 left-0 flex items-center justify-between
-			opacity-0 transition-opacity group-focus-within:pointer-events-auto group-focus-within:opacity-100
-			group-hover:pointer-events-auto group-hover:opacity-100"
+			opacity-0 transition-opacity group-focus-within:opacity-100 group-hover:opacity-100"
 	>
 		<button
 			type="button"
