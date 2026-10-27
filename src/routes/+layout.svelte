@@ -3,7 +3,11 @@
 	import favicon from '#lib/assets/favicon.svg';
 	import type { LayoutProps } from './$types';
 	import { dev } from '$app/env';
-	import { BASE_URL } from '$app/env/public';
+	import {
+		BASE_URL,
+		UMAMI_ANALYTICS_SCRIPT_URL,
+		UMAMI_ANALYTICS_WEBSITE_ID,
+	} from '$app/env/public';
 
 	let { children }: LayoutProps = $props();
 </script>
@@ -16,10 +20,15 @@
 		type="text/plain"
 		title="AI-readable site overview"
 	/>
+
+	{#if !dev}
+		<script
+			defer
+			async
+			src={UMAMI_ANALYTICS_SCRIPT_URL}
+			data-website-id={UMAMI_ANALYTICS_WEBSITE_ID}
+		></script>
+	{/if}
 </svelte:head>
 
 {@render children()}
-
-{#if !dev}
-	<script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-{/if}

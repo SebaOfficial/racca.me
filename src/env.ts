@@ -6,6 +6,14 @@ export const variables = defineEnvVars({
 		schema: z.url(),
 		public: true,
 	},
+	UMAMI_ANALYTICS_SCRIPT_URL: {
+		schema: z.url(),
+		public: true,
+	},
+	UMAMI_ANALYTICS_WEBSITE_ID: {
+		schema: z.string(),
+		public: true,
+	},
 	TERMINAL_HISTORY_LIMIT: {
 		schema: z.string().transform((val) => Number(val)),
 		public: true,
