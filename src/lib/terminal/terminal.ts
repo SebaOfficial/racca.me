@@ -5,6 +5,7 @@ import type { System } from './system';
 import History from './history';
 import Prompt from '#lib/components/terminal/Prompt.svelte';
 import s from '#lib/strings.ts';
+import { dev } from '$app/env';
 
 export class Terminal {
 	private history = new History();
@@ -138,6 +139,12 @@ export class Terminal {
 				txt: s.terminal.errors.error(message),
 				options: { format: 'error', isHtml: false },
 			});
+		} finally {
+			if (!dev && options.history) {
+				window.umami.track('command', {
+					raw: command,
+				});
+			}
 		}
 	}
 
