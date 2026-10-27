@@ -27,6 +27,7 @@
 			async
 			src={UMAMI_ANALYTICS_SCRIPT_URL}
 			data-website-id={UMAMI_ANALYTICS_WEBSITE_ID}
+			data-performance="true"
 		></script>
 	{/if}
 </svelte:head>
