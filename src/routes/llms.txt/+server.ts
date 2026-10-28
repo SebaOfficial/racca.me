@@ -1,4 +1,4 @@
-import { posts, projects } from '#lib/server/blog.ts';
+import { getPosts, getProjects } from '#lib/server/blog.ts';
 import s from '#lib/strings.ts';
 import { BASE_URL } from '$app/env/public';
 
@@ -7,7 +7,8 @@ export const prerender = true;
 const formatLink = (label: string, url: string, description: string, tab: boolean = false) =>
 	`${tab ? '\t' : ''}- [${label}](${url}): ${description.replace(/\s+/g, ' ').trim()}`;
 
-export const GET = () => {
+export const GET = async () => {
+	const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
 	const blogLinks = posts
 		.map((post) => formatLink(post.title, `${BASE_URL}/blog/${post.slug}`, post.description))
 		.join('\n');

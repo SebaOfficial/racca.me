@@ -1,9 +1,10 @@
-import { posts, projects } from '#lib/server/blog.ts';
+import { getPosts, getProjects } from '#lib/server/blog.ts';
 import { BASE_URL } from '$app/env/public';
 
 export const prerender = true;
 
-export const GET = () => {
+export const GET = async () => {
+	const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
 	const urls: { slug: string; updated?: Date }[] = [
 		{ slug: '/' },
 		...posts.map((p) => {
