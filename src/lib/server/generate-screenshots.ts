@@ -3,7 +3,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { ensureScreenshot } from './project-screenshots.ts';
 
-process.loadEnvFile();
+try {
+	process.loadEnvFile();
+} catch (error) {
+	if ((error as NodeJS.ErrnoException).code !== 'ENOENT') throw error;
+}
 
 const projectsDir = path.join('src', 'lib', 'blog', 'projects');
 
