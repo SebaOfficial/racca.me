@@ -5,12 +5,16 @@
 	const { path }: { path: { label: string; url?: string }[] } = $props();
 </script>
 
-<nav aria-label="Breadcrumb" class="flex">
+<nav aria-label="Breadcrumb" class="flex" itemscope itemtype="https://schema.org/BreadcrumbList">
 	<ol class="inline-flex items-center space-x-1 md:space-x-3 rtl:space-x-reverse">
 		{#each path as item, index (index)}
 			<li
+				itemprop="itemListElement"
+				itemscope
+				itemtype="https://schema.org/ListItem"
 				class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
 			>
+				<meta itemprop="position" content={String(index + 1)} />
 				{#if index > 0}
 					<svg
 						fill="currentColor"
@@ -29,16 +33,19 @@
 
 				{#if item.url}
 					<a
+						itemprop="item"
 						class="inline-flex items-center text-sm font-medium text-gray-700 capitalize hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
 						href={resolve(item.url as '/')}
 					>
 						{#if index === 0}
 							<HomeSolid class="me-2 h-4 w-4" aria-hidden="true" />
 						{/if}
-						{item.label}
+						<span itemprop="name">{item.label}</span>
 					</a>
 				{:else}
-					<span aria-current="page" class="text-gray-500 dark:text-gray-400">{item.label}</span>
+					<span itemprop="name" aria-current="page" class="text-gray-500 dark:text-gray-400"
+						>{item.label}</span
+					>
 				{/if}
 			</li>
 		{/each}

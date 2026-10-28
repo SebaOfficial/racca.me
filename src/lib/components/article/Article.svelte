@@ -93,14 +93,48 @@
 		]}
 	/>
 
-	<article class="prose mt-10 max-w-none prose-invert">
-		<h1>{title}</h1>
+	<article
+		class="prose mt-10 max-w-none prose-invert"
+		itemscope
+		itemtype={type === 'post'
+			? 'https://schema.org/BlogPosting'
+			: 'https://schema.org/SoftwareSourceCode'}
+		itemid={canonical}
+	>
+		<meta itemprop="url" content={canonical} />
+		<meta itemprop="description" content={description} />
+		<span itemprop="author" itemscope itemtype="https://schema.org/Person">
+			<meta itemprop="name" content="Sebastiano Racca" />
+			<meta itemprop="url" content={BASE_URL} />
+		</span>
+		{#if type === 'post'}
+			{#if created}
+				<meta itemprop="datePublished" content={created.toISOString()} />
+			{/if}
+			{#if updated}
+				<meta itemprop="dateModified" content={updated.toISOString()} />
+			{/if}
+		{:else}
+			{#if repository}
+				<meta itemprop="codeRepository" content={repository} />
+			{/if}
+			{#if link}
+				<meta itemprop="sameAs" content={link} />
+			{/if}
+		{/if}
+
+		<h1 itemprop={type === 'post' ? 'headline' : 'name'}>{title}</h1>
 		{#if created}
 			<p class="not-prose text-sm text-slate-400">
-				{created.toLocaleDateString('en-US', { dateStyle: 'long' })}
+				<time
+					itemprop={type === 'post' ? 'datePublished' : 'dateCreated'}
+					datetime={created.toISOString()}
+				>
+					{created.toLocaleDateString('en-US', { dateStyle: 'long' })}
+				</time>
 			</p>
 		{/if}
-		<div class="mt-8">
+		<div class="mt-8" itemprop="articleBody">
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html content}
 		</div>
