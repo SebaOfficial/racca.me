@@ -7,8 +7,8 @@ node_modules
 .wrangler
 /.svelte-kit
 /build
-src/lib/generated/
-!src/lib/generated/.gitkeep
+src/lib/blog/generated/*
+!src/lib/blog/generated/.gitkeep
 
 # OS
 .DS_Store

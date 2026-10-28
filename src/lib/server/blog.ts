@@ -1,14 +1,32 @@
 import { compile } from 'mdsvex';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import type { Picture } from '@sveltejs/enhanced-img';
 import type { BlogPost, BlogProject } from '#lib/blog.d.ts';
-import screenshot from '#lib/server/screenshot.ts';
+import { screenshotFilename } from '#lib/server/project-screenshots.ts';
 import rehypeSlug from 'rehype-slug';
 import rehypeExternalLinks from 'rehype-external-links';
 
 const src = path.join('src', 'lib', 'blog');
 const projectsDir = path.join(src, 'projects');
 const postsDir = path.join(src, 'posts');
+const generatedScreenshots = import.meta.glob<Picture>('../blog/generated/*.png', {
+	eager: true,
+	import: 'default',
+	query: '?enhanced',
+});
+
+const saveScreenshot = async (url: string) => {
+	const filename = screenshotFilename(url);
+	const preview = generatedScreenshots[`../blog/generated/${filename}`];
+	if (!preview) {
+		throw new Error(
+			`Missing generated screenshot import: ${filename}. Run the prebuild step first.`,
+		);
+	}
+
+	return preview;
+};
 
 const parseMd = async (md: string) => {
 	const res = await compile(md, {
@@ -57,7 +75,7 @@ const loadProjects = async (): Promise<BlogProject[]> =>
 					description: fm.description as string,
 					repository: fm.repository as string,
 					link: fm.link as string,
-					preview: `data:image/png;base64,${await screenshot(fm.link as string)}`,
+					preview: await saveScreenshot(fm.link as string),
 					content: html,
 					created: fm.created ? new Date(fm.created as string) : undefined,
 					updated: fm.updated ? new Date(fm.updated as string) : undefined,

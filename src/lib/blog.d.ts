@@ -25,5 +25,5 @@ export interface BlogProject extends ArticleBase {
 	/** Link to the project, also used to generate the preview */
 	link: string;
 	/** A generated preview of the project */
-	preview: Picture | string;
+	preview: Picture;
 }

@@ -1,4 +1,3 @@
-import { SCREENSHOT_API } from '$app/env/private';
 import multipart from 'parse-multipart-data';
 
 interface MultipartPart {
@@ -7,8 +6,8 @@ interface MultipartPart {
 	filename?: string;
 }
 
-const screenshot = async (url: string) => {
-	const res = await fetch(`${SCREENSHOT_API}/scrape`, {
+const screenshot = async (url: string, screenshotApi: string) => {
+	const res = await fetch(`${screenshotApi}/scrape`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
