@@ -8,6 +8,10 @@
 	--color-on-background: #e3e2e3;
 }
 
+html {
+	@apply scroll-smooth;
+}
+
 body {
 	@apply max-w-full overflow-x-clip bg-background leading-normal text-on-background;
 }
