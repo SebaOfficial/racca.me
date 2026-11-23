@@ -72,9 +72,9 @@ importers:
       mdsvex:
         specifier: ^0.12.8
         version: 0.12.8(svelte@5.57.3(@typescript-eslint/types@8.72.1))
-      parse-multipart-data:
-        specifier: ^1.5.0
-        version: 1.5.0
+      playwright:
+        specifier: ^1.65.1
+        version: 1.65.1
       prettier:
         specifier: ^3.9.10
         version: 3.9.10
@@ -1735,9 +1735,6 @@ packages:
   parse-headers@2.0.6:
     resolution: {integrity: sha512-Tz11t3uKztEW5FEVZnj1ox8GKblWn+PvHY9TmJV5Mll2uHEwRdR/5Li1OlXoECjLYkApdhWy44ocONwXLiKO5A==}
 
-  parse-multipart-data@1.5.0:
-    resolution: {integrity: sha512-ck5zaMF0ydjGfejNMnlo5YU2oJ+pT+80Jb1y4ybanT27j+zbVP/jkYmCrUGsEln0Ox/hZmuvgy8Ra7AxbXP2Mw==}
-
   parse-png@1.1.2:
     resolution: {integrity: sha512-Ge6gDV9T5zhkWHmjvnNiyhPTCIoY7W+FC7qWPtuL2lIGZAFxxqTRG/ouEXsH9qkw+HzYiPEU/tFcxOCEDTP1Yw==}
     engines: {node: '>=4'}
@@ -1775,6 +1772,16 @@ packages:
 
   pixelmatch@4.0.2:
     resolution: {integrity: sha512-J8B6xqiO37sU/gkcMglv6h5Jbd9xNER7aHzpfRdNmV4IbQBzBpe4l9XmbG+xPF/znacgu2jfEw+wHffaq/YkXA==}
+    hasBin: true
+
+  playwright-core@1.65.1:
+    resolution: {integrity: sha512-hqPpz7blSMPxWVdoeE1yiBSzXsKiVOd2k+kjCvmUywD2GPO2Dd9HfcWnq9NN0GHbNZDFgZ9JfBFr+X5/BLo0qw==}
+    engines: {node: '>=20'}
+    hasBin: true
+
+  playwright@1.65.1:
+    resolution: {integrity: sha512-vJ1FuoOrNwOKHUIVEvSt3jT1L+wjjDpwhwIstKtfvTh8XIG4FG4bIFuvNdMxi81LGfAhUgUZleVFaOLY4RIUUw==}
+    engines: {node: '>=20'}
     hasBin: true
 
   pngjs@3.4.0:
@@ -3643,8 +3650,6 @@ snapshots:
 
   parse-headers@2.0.6: {}
 
-  parse-multipart-data@1.5.0: {}
-
   parse-png@1.1.2:
     dependencies:
       pngjs: 3.4.0
@@ -3674,6 +3679,12 @@ snapshots:
   pixelmatch@4.0.2:
     dependencies:
       pngjs: 3.4.0
+
+  playwright-core@1.65.1: {}
+
+  playwright@1.65.1:
+    dependencies:
+      playwright-core: 1.65.1
 
   pngjs@3.4.0: {}
 

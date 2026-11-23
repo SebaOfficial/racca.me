@@ -18,9 +18,6 @@ export const variables = defineEnvVars({
 		schema: z.string().transform((val) => Number(val)),
 		public: true,
 	},
-	SCREENSHOT_API: {
-		schema: z.url(),
-	},
 	GITHUB_TOKEN: {
 		schema: z.string(),
 	},

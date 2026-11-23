@@ -22,15 +22,15 @@ The site combines written content with a small browser-based terminal. Visitors 
 - **Markdown content** in [`src/lib/blog`](./src/lib/blog), compiled with mdsvex.
 - **Interactive terminal** powered by Svelte 5 and ZenFS, with a virtual filesystem backed by browser storage.
 - **GitHub project carousel** populated from the GitHub API with Octokit.
-- **Project previews** generated through the local Docker Compose screenshot service.
+- **Project previews** generated locally with Playwright during the build.
 - **Accessible, responsive UI** with Tailwind CSS, keyboard navigation, and semantic page output.
 
 ## Tech stack
 
-| Area      | Technologies                                                                               |
-| --------- | ------------------------------------------------------------------------------------------ |
-| Framework | SvelteKit 3, Svelte 5, TypeScript, Tailwind CSS, [ZenFS](https://zenfs.dev/)               |
-| Services  | GitHub REST API (Octokit), [`usaiinc/scraper`](https://github.com/goodreasonai/ScrapeServ) |
+| Area      | Technologies                                                                 |
+| --------- | ---------------------------------------------------------------------------- |
+| Framework | SvelteKit 3, Svelte 5, TypeScript, Tailwind CSS, [ZenFS](https://zenfs.dev/) |
+| Services  | GitHub REST API (Octokit), Playwright                                        |
 
 ## Getting started
 
@@ -38,7 +38,7 @@ The site combines written content with a small browser-based terminal. Visitors 
 
 - Node.js 26
 - pnpm 12
-- Docker, with Docker Compose support
+- A browser installed for Playwright (run `pnpm exec playwright install chromium` once if needed)
 
 Install dependencies from the repository root:
 
@@ -58,9 +58,7 @@ Start the development server with:
 pnpm dev
 ```
 
-The `predev` script starts the Docker Compose scraper service automatically and waits for it to become healthy. The site is then available at the local URL printed by Vite, usually [`http://localhost:5173`](http://localhost:5173).
-
-The scraper service is exposed on port `5006`. If Docker is not running, `pnpm dev` cannot start the local preview service.
+The `predev` script generates missing project screenshots with the custom Playwright browser script automatically. The site is then available at the local URL printed by Vite, usually [`http://localhost:5173`](http://localhost:5173).
 
 ### Build and deploy
 
@@ -78,11 +76,11 @@ pnpm preview
 
 ## Useful commands
 
-| Command       | Description                                           |
-| ------------- | ----------------------------------------------------- |
-| `pnpm dev`    | Start Docker services and the Vite development server |
-| `pnpm predev` | Start Docker services                                 |
-| `pnpm build`  | Generate the static production site                   |
+| Command       | Description                                                |
+| ------------- | ---------------------------------------------------------- |
+| `pnpm dev`    | Generate screenshots and start the Vite development server |
+| `pnpm predev` | Generate missing project screenshots                       |
+| `pnpm build`  | Generate the static production site                        |
 
 ## License
 

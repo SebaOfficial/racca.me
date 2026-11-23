@@ -38,15 +38,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Start Docker services
-        run: docker compose up -d --wait --wait-timeout 120
-
       - name: Build SvelteKit
         env:
           BASE_URL: 'https://racca.me'
           UMAMI_ANALYTICS_SCRIPT_URL: 'https://analytics.racca.me/script.js'
           UMAMI_ANALYTICS_WEBSITE_ID: '3bd34a0b-4596-4a16-b87c-63c0d3c42ddf'
-          SCREENSHOT_API: 'http://localhost:5006'
           GITHUB_PROJECTS_SOURCES: 'users/SebaOfficial, orgs/TelegramSDK, orgs/LinkSharer, orgs/aid-ly'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PROJECTS_MIN_STARS: 2
@@ -57,14 +53,6 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: build
-
-      - name: Show Docker logs on failure
-        if: failure()
-        run: docker compose logs
-
-      - name: Stop Docker services
-        if: always()
-        run: docker compose down --volumes --remove-orphans
 
   deploy:
     needs: build

@@ -24,7 +24,7 @@ The project helped me practice several parts of web development:
 - **Markdown and mdsvex** for writing blog posts and project pages as content files.
 - **Accessibility** for keyboard navigation, focus handling, semantic output, and live terminal updates.
 - **API integration** with Octokit to load public GitHub project data.
-- **Docker Compose** to run the local screenshot service used for project previews.
+- **Playwright** to generate project preview screenshots locally during development and builds.
 
 This combination keeps the site simple: content lives in Markdown, while the components provide the interface around it.
 

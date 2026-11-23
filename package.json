@@ -10,7 +10,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"predev": "docker compose up -d --wait --wait-timeout 120 && pnpm prebuild",
+		"predev": "pnpm prebuild",
 		"prebuild": "tsx src/lib/server/generate-screenshots.ts",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -39,7 +39,7 @@
 		"flowbite-svelte-icons": "^3.1.0",
 		"globals": "^17.13.0",
 		"mdsvex": "^0.12.8",
-		"parse-multipart-data": "^1.5.0",
+		"playwright": "^1.65.1",
 		"prettier": "^3.9.10",
 		"prettier-plugin-svelte": "^4.1.1",
 		"prettier-plugin-tailwindcss": "^0.8.1",

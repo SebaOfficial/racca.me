@@ -8,7 +8,7 @@ const generatedDir = path.join('src', 'lib', 'blog', 'generated');
 export const screenshotFilename = (url: string) =>
 	`${createHash('sha256').update(url).digest('hex')}.png`;
 
-export const ensureScreenshot = async (url: string, screenshotApi: string) => {
+export const ensureScreenshot = async (url: string) => {
 	const filename = screenshotFilename(url);
 	const filePath = path.join(generatedDir, filename);
 
@@ -20,7 +20,7 @@ export const ensureScreenshot = async (url: string, screenshotApi: string) => {
 	}
 
 	await fs.mkdir(generatedDir, { recursive: true });
-	await fs.writeFile(filePath, Buffer.from(await screenshot(url, screenshotApi), 'base64'));
+	await fs.writeFile(filePath, Buffer.from(await screenshot(url), 'base64'));
 
 	return filename;
 };
