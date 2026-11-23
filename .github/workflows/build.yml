@@ -36,7 +36,10 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm ci
+
+      - name: Install playwright
+        run: pnpm exec playwright install --with-deps
 
       - name: Build SvelteKit
         env:
